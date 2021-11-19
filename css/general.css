@@ -1,0 +1,25 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    color: #333;
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.fjccaic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    text-transform: uppercase;
+}

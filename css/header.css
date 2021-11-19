@@ -1,0 +1,50 @@
+.main-header {
+  position: fixed;
+  z-index: 999;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: calc(100% - 100px);
+  height: 107px;
+  padding-right: 138px;
+  color: #fff;
+  background-color: transparent;
+  font-weight: 500;
+  transition: 0.3s;
+  border-bottom: 1px solid rgba(199, 204, 209, 0.5);
+  overflow: hidden;
+}
+
+.main-header.white {
+  color: #333;
+  background-color: #fff;
+}
+
+.main-header.white svg {
+    fill: #333;
+}
+
+.header__link {
+  flex-shrink: 0;
+  position: relative;
+  height: inherit;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.header__link::after {
+  content: '';
+  position: absolute;
+  display: block;
+  left: 22px;
+  right: 22px;
+  top: 0;
+  height: 4px;
+  background-color: transparent;
+  transition: 0.3s;
+}
+
+.header__link:hover::after {
+  background-color: #fff;
+}

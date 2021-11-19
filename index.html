@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" />
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/aside.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrolloverflow.min.js"></script>
+    
+    <script defer src="js/gsap/aside.js"></script>
+    <script defer src="js/fullpage.js"></script>
+
+    <title>Котофей</title>
+  </head>
+  <body>
+      <header class="main-header">
+        <a href="#" class="header__link btn fjccaic">
+          <span>Работа в котофее</span>
+        </a>
+        <a href="#" class="header__link btn fjccaic">
+          <span>Бренды</span>
+        </a>
+        <a href="#" class="header__link btn fjccaic">
+          <span>Направления</span>
+        </a>
+        <a href="#" class="header__link btn fjccaic">
+          <span>Подразделения</span>
+        </a>
+        <a href="#" class="header__link btn fjccaic">
+          <span>Студентам</span>
+        </a>
+        <a href="#" class="header__link btn fjccaic">
+          <span>
+            <svg width="25" height="25" viewBox="0 0 25 25" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.1446 15.9901L18.018 16.163L18.1696 16.3145L23.7185 21.8634C24.231 22.3759 24.231 23.2068 23.7185 23.7193C23.206 24.2318 22.3751 24.2318 21.8626 23.7193L16.3138 18.1705L16.1622 18.0189L15.9893 18.1456C14.3499 19.3461 12.3374 20.0634 10.1562 20.0634C4.69435 20.0634 0.25 15.6191 0.25 10.1572C0.25 4.69532 4.6943 0.250977 10.1562 0.250977C15.6181 0.250977 20.0624 4.69532 20.0624 10.1572C20.0624 12.3384 19.3452 14.3506 18.1446 15.9901ZM2.87501 10.1572C2.87501 14.1725 6.1409 17.4384 10.1562 17.4384C14.1715 17.4384 17.4374 14.1725 17.4374 10.1572C17.4374 6.14188 14.1716 2.87599 10.1562 2.87599C6.1409 2.87599 2.87501 6.14188 2.87501 10.1572Z" stroke-width="0.5"/>
+            </svg>
+          </span>
+        </a>
+      </header>
+      <aside class="main-aside">
+        <div class="aside-always">
+          <a href="#" class="aside__el logo">
+            <img src="img/logo.svg" alt="Logo">
+          </a>
+          <div class="aside__toggles-wrap">
+            <a href="#" class="aside__el toggle fjccaic vacancyToggleBtn">
+              <span class="rotate">Найти своё призвание</span>
+            </a>
+            <a href="#" class="aside__el toggle fjccaic">
+              <span class="rotate">Поиск работы</span>
+            </a>
+          </div>
+          <a href="#" class="aside__el">
+            <img src="img/heart.svg" alt="Heart">
+          </a>
+        </div>
+        <div class="aside__vacancy hidden">
+          <div class="vacancy-left">
+            <div class="vacancy-left-text">
+              Доступно <span>500</span><br>
+              открытых<br>вакансий
+            </div>
+          </div>
+          <div class="vacancy-main fjccaic">
+            <a class="github" href="https://github.com/Alchemist997/shoes" target="_blank">Ссылка на гитхаб</a>
+          </div>
+        </div>
+      </aside>
+      <main id="fullPage">
+          <section class="s1 part active sCurrent">
+              <div class="slide slide1">
+                <div class="s1__block s1__block--left fjccaic">
+                  <a href="#" class="fjccaic btn btn--sec1">Поиск вакансий</a>
+                  <span></span>
+                  <a href="#" class="fjccaic btn btn--sec1 vacancyToggleBtn">Найди своё призвание</a>
+                </div>
+                <div class="s1__block s1__block--right fjccaic">
+                  <a href="#" class="fjccaic btn btn--sec1" id="bmwBtn">Узнать историю компании «котофей»</a>
+                </div>
+                <div class="s1__slide-cover"></div>
+              </div>
+
+              <div class="s2 slide">
+                <div class="s2__top">
+                  <div class="s2-top__left">
+                    История компании<br><br>
+                    <span>
+                      А начиналось все осенью 1935 года, когда в помещении бывшей фабрики-кухни города Егорьевск, Московской области было демонтировано оборудование, и начались работы по переустройству здания под промышленное предприятие. Одновременно с монтажными работами в одном из помещений временно были установлены обувные машины, и началось обучение рабочих — будущих специалистов, которые впоследствии стали костяком предприятия. Уже в сентябре 1936 года в основном все операции обувного потока были укомплектованы обученными кадрами, а 30 декабря этого же года Государственной комиссией фабрика была принята к эксплуатации, и начался выпуск первой плановой продукции. 
+К началу 90-х годов фабрика выпускала более 3 миллионов пар детской обуви в год. Затем в связи с известными экономическими причинами начался затяжной спад, в результате в 1998 году фабрика выпустила всего 400 тыс. пар. Благодаря правильно выбранной стратегии развития производства, созданию новых моделей, плодотворной работе всего коллектива из экономического кризиса удалось выйти.
+                    </span>
+                  </div>
+                  <div class="s2-top__right">
+                    <div id="img1">
+                      <img src="https://i.pinimg.com/736x/3c/68/39/3c68398d41b4f814572be34df71a5055.jpg" alt="BMW">
+                      <div class="img-cap"></div>
+                    </div>
+                    <div id="img2">
+                      <img src="https://sun9-56.userapi.com/c850420/v850420071/9f3d1/aHAv80Ef_EY.jpg" alt="BMW">
+                      <div class="img-cap"></div>
+                    </div>
+                    <div id="img3">
+                      <img src="http://www.7-forum.com/news/2018/m5_story/bmw_m5_e60_006-b.jpg" alt="BMW">
+                      <div class="img-cap"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </section>
+      </main>
+  </body>
+</html>
