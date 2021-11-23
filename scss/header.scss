@@ -1,0 +1,72 @@
+.main-header {
+  position: fixed;
+  z-index: 7777;
+  right: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: calc(100% - 100px);
+  height: 107px;
+  padding-right: 160px;
+  color: $white;
+  background-color: transparent;
+  font-weight: 500;
+  transition: 0.3s;
+  border-bottom: 1px solid $white05;
+  overflow: hidden;
+
+  &__link {
+    flex-shrink: 0;
+    position: relative;
+    height: inherit;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    &:last-child {
+      padding-right: 0;
+
+      &::after {
+        right: 0;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 16px;
+      right: 16px;
+      top: 0;
+      height: 4px;
+      background-color: transparent;
+      transition: 0.3s;
+    }
+
+    &:hover::after {
+      background-color: $white;
+    }
+  }
+
+  &.white {
+    color: #333;
+    background-color: $white;
+
+    .main-header__link:hover::after {
+      background-color: $blueMain;
+    }
+
+    .search-svg {
+      fill: $blackMain;
+    }
+  }
+
+  &__stripe {
+    position: fixed;
+    z-index: 7777;
+    top: 106px;
+    left: 0;
+    width: 100px;
+    height: 1px;
+    background-color: $white05;
+  }
+}

@@ -1,0 +1,99 @@
+.fp-part {
+  background-color: #ccc;
+}
+
+.btn--sec1 {
+  background-color: $white;
+  min-height: 64px;
+  margin: 15px;
+  padding: 20px 32px;
+
+  &:first-child {
+    margin-left: 100px;
+  }
+}
+
+.general-wrap .s1 {
+  display: flex;
+  align-items: stretch;
+}
+
+.s1 {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &__multiBG {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    // background: url('../img/kbg_dark.png') no-repeat center / cover;
+    display: grid;
+    justify-items: stretch;
+    align-items: stretch;
+    grid-template-rows: 50vh 50vh;
+    grid-template-columns: 15.3vw 19.8vw 50vw 14.9vw;
+
+    .span2 {
+      grid-column: span 2;
+    }
+  }
+
+  &__bg-img-wrap {
+    position: relative;
+    display: flex;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__img-cap {
+    position: absolute;
+    display: block;
+    background-color: $white;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  &__block {
+    background-color: transparent;
+    transition: background-color 0.22s ease-in-out;
+    flex-basis: 50%;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.32);
+    }
+  }
+
+  &__block--right {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 174px;
+      bottom: 145px;
+      display: inline-block;
+      width: 1px;
+      background-color: $white05;
+    }
+  }
+}
+
+.s1__slide-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: $white;
+  transform: translateX(100%);
+}

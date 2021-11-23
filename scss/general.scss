@@ -1,0 +1,78 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color: $blackMain;
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.flexcenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  text-transform: uppercase;
+}
+
+.main-logo {
+  position: fixed;
+  z-index: 7777;
+  width: 52px;
+  height: 76px;
+  top: 16px;
+  left: 24px;
+  transition: left 0.5s;
+
+  &.introState {
+    left: 160px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.scroll-down {
+  position: fixed;
+  z-index: 7777;
+  bottom: 54px;
+  left: calc(50% - 14px);
+  transition: bottom 1s;
+
+  &.introState {
+    bottom: 83px;
+  }
+
+  &__body {
+    position: relative;
+    width: 28px;
+    height: 50px;
+    border-radius: 14px;
+    border: 2px solid $white;
+  }
+
+  &__wheel {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: $white;
+    top: 7px;
+    left: calc(50% - 2px);
+  }
+}

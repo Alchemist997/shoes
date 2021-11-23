@@ -1,0 +1,58 @@
+.s2 {
+  background-color: $white;
+  display: flex;
+  width: 200vw;
+}
+
+.s2__top {
+  display: flex;
+  align-items: stretch;
+  padding-top: 107px;
+  padding-bottom: 100px;
+  padding-left: 130px;
+}
+
+.s2-top__left {
+  width: 45%;
+  padding-right: 80px;
+  padding-top: 20px;
+  font-size: 25px;
+}
+
+.s2-top__left span {
+  font-size: 18px;
+  font-weight: lighter;
+}
+
+.s2-top__right {
+  margin-top: -50px;
+  width: 44%;
+  display: grid;
+  grid-template-columns: repeat (2, 250px);
+  grid-template-rows: auto auto;
+}
+
+.s2-top__right div {
+  overflow: hidden;
+  position: relative;
+}
+
+.s2-top__right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.s2-top__right .img-cap {
+  position: absolute;
+  display: block;
+  background-color: $white;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#img3 {
+  grid-column: span 2;
+}

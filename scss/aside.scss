@@ -1,0 +1,99 @@
+.main-aside {
+  position: fixed;
+  z-index: 997;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  text-transform: uppercase;
+  display: flex;
+
+  .aside {
+    &__always {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-top: 70px;
+      width: 100px;
+      background-color: $blueMain;
+      color: $white;
+      z-index: 997;
+    }
+
+    &__toggles-wrap {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    &__el {
+      display: block;
+      padding-top: 32px;
+      padding-bottom: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $blackMain;
+      }
+
+      &.toggle {
+        height: 200px;
+        display: flex;
+        position: relative;
+
+        &:last-child {
+          margin-top: -20px;
+        }
+
+        &:first-child::after {
+          content: '';
+          position: absolute;
+          left: 10px;
+          right: 10px;
+          bottom: 0;
+          display: inline-block;
+          height: 1px;
+          background-color: $white;
+        }
+      }
+    }
+
+    &__vacancy {
+      display: inline-flex;
+      z-index: 996;
+      background-color: transparent;
+
+      &.hidden {
+        width: 0;
+      }
+    }
+  }
+
+  .vacancy-left {
+    width: 360px;
+    padding-left: 32px;
+    z-index: 992;
+    position: relative;
+    left: -370px;
+    background-color: #aaa;
+  }
+
+  .vacancy-left-text {
+    font-size: 32px;
+    padding-top: 60px;
+  }
+
+  .vacancy-main {
+    width: calc(100vw - 460px);
+    z-index: 991;
+    position: relative;
+    right: 100vw;
+    background-color: #ccc;
+  }
+
+  .rotate90 {
+    display: block;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+  }
+}
