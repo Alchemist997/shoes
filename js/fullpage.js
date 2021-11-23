@@ -44,8 +44,8 @@ toFirstSlide.to('#s1BG1', { top: '100%', duration: 1 })
 toFirstSlide.pause();
 
 watch.onclick = () => {
-    // video2.play();
-    alert('Видео пока не добавлено');
+    alert('Видео некачественное из-за портретной ориентации');
+    video2.play();
 };
 
 let introBlocks = document.querySelectorAll('.introState');
