@@ -74,3 +74,27 @@
     }
   }
 }
+
+.main-footer {
+  padding: 48px;
+  padding-left: 160px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 18px;
+  font-weight: normal;
+  color: $white;
+  background-color: $blueDark;
+
+  &__el {
+    margin-right: 73px;
+
+    div:first-child {
+      margin-bottom: 8px;
+    }
+  }
+
+  span {
+    margin-top: 27px;
+  }
+}
