@@ -67,6 +67,8 @@ document.addEventListener('wheel', evt => {
 });
 
 // Блок для перехода между 1/2(Left/Right) слайдами
+let animIsActive = false;
+
 let toFirstSlideGsap = gsap.timeline();
 toFirstSlideGsap.to('#s1BG1', { top: '100%', duration: 1 })
     .to('#s1BG2', { bottom: '100%', duration: 1, delay: -1 })
@@ -74,18 +76,25 @@ toFirstSlideGsap.to('#s1BG1', { top: '100%', duration: 1 })
     .to('#s1BG4', { bottom: '100%', duration: 1, delay: -1 })
     .to('#s1BG5', { left: '100%', duration: 1, delay: -1 })
     .to('#s1BG6', { top: '100%', duration: 1, delay: -1 })
-    .to('#s1BG7', { left: '100%', duration: 1, delay: -1 });
+    .to('#s1BG7', { left: '100%', duration: 1, delay: -1, onComplete: () => animIsActive = false });
 toFirstSlideGsap.pause();
 
 let toFirstSlide = () => {
+    if (animIsActive)
+        return;
+
     if (rightOnTop <= 3) {
         rightOnTop++;
     } else {
+        animIsActive = true;
         rightOnTop = 0;
         setTimeout(() => {
             $.fn.fullpage.silentMoveTo(0, 0);
             gsap.to('.scroll-down', { 'z-index': 1 });
         }, 1700);
+        setTimeout(() => {
+            toFirstSlideGsap.play();
+        }, 2300);
         leftSlide.classList.add('sCurrent');
         rightSlide.classList.remove('sCurrent');
         to2SlideGsap.reverse();
@@ -93,23 +102,26 @@ let toFirstSlide = () => {
 };
 
 let to2SlideGsap = gsap.timeline();
-to2SlideGsap.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, ease: 'power2.out' })
+to2SlideGsap.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, delay: 1, ease: 'power2.out' })
     .to('#multiImg1', { top: '100%', duration: 0.7, delay: 0 })
     .to('#multiImg2', { top: '100%', duration: 0.7, delay: -0.7 })
     .to('#multiImg3', { left: '100%', duration: 0.7, delay: -0.7 })
     .to('#multiImg4', { bottom: '100%', duration: 0.7, delay: -0.7 })
-    .fromTo('.main-section__left', { opacity: 0 }, { opacity: 1, duration: 1 });
+    .fromTo('.main-section__left', { opacity: 0 }, { opacity: 1, duration: 1, onComplete: () => animIsActive = false });
 to2SlideGsap.pause();
 
 to2Slide = () => {
+    if (animIsActive)
+        return;
+
+    animIsActive = true;
     setTimeout(() => {
         $.fn.fullpage.silentMoveTo(0, 1);
-    }, 900);
-    setTimeout(() => {
-        gsap.to('.scroll-down', { 'z-index': -1 });
-    }, 300);
+    }, 1900);
+    gsap.to('.scroll-down', { 'z-index': -1, delay: 1.3 });
     leftSlide.classList.remove('sCurrent');
     rightSlide.classList.add('sCurrent');
+    toFirstSlideGsap.reverse();
     to2SlideGsap.play();
 };
 
