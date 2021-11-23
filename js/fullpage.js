@@ -44,7 +44,6 @@ toFirstSlide.to('#s1BG1', { top: '100%', duration: 1 })
 toFirstSlide.pause();
 
 watch.onclick = () => {
-    alert('Видео некачественное из-за портретной ориентации');
     video2.play();
 };
 
