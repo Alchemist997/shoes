@@ -32,6 +32,11 @@ $('#fullPage').fullpage({
     }
 });
 
+let mouseWheel = gsap.timeline();
+mouseWheel.to('.scroll-down__wheel', { top: '15px', duration: 0.6, ease: 'power2' })
+    .to('.scroll-down__wheel', { top: '7px', duration: 0.5, ease: 'none' });
+mouseWheel.repeat(-1);
+
 let toFirstSlide = gsap.timeline();
 
 toFirstSlide.to('#s1BG1', { top: '100%', duration: 1 })
@@ -45,6 +50,7 @@ toFirstSlide.pause();
 
 watch.onclick = () => {
     video2.play();
+    mouseWheel.pause();
 };
 
 let introBlocks = document.querySelectorAll('.introState');
