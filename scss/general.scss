@@ -12,6 +12,10 @@ html {
   letter-spacing: 0.05em;
 }
 
+h1, h3, p, span {
+  line-height: 1.5;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -19,7 +23,7 @@ a {
 
 h1 {
   font-size: 48px;
-  margin-bottom: 0.6em;
+  margin-bottom: 16px;
 }
 
 h3 {

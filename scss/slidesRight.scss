@@ -13,9 +13,10 @@
   }
 
   .text {
+    display: inline-block;
     font-size: 18px;
     font-weight: 300;
-    margin-bottom: 120px;
+    margin-bottom: 100px;
   }
 
   &__left {
@@ -94,7 +95,7 @@
     }
   }
 
-  span {
+  a {
     margin-top: 27px;
   }
 }
