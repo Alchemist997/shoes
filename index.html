@@ -11,8 +11,9 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrolloverflow.min.js"></script>
 
-    <script defer src="js/gsap/aside.js"></script>
     <script defer src="js/fullpage.js"></script>
+    <script defer src="js/gsap/aside.js"></script>
+    <script defer src="js/gsap/rightTrack.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,8 +47,8 @@
       </div>
     </div>
 
-    <div class="intro2 introState">
-      <video id="video2" autoplay muted poster="img/kbg_dark.png">
+    <div class="introBG introState">
+      <video id="videoBG" autoplay muted poster="img/kbg_dark.png">
         <source src="img/vid.mp4" type="video/mp4" />
       </video>
     </div>
@@ -57,7 +58,7 @@
       <p class="underH1">Построй свою карьеру</p>
       <div class="flexcenter">
         <div class="btn btn--intro">ЗАПОЛНИТЬ АНКЕТУ</div>
-        <div class="intro__watch-btn flexcenter" id="watch">
+        <div class="intro__watch-btn flexcenter" id="watchVideo">
           <span class="play-btn"></span>
           Смотреть видео
         </div>
@@ -170,16 +171,17 @@
           </div>
 
           <div class="s1__block s1__block--right flexcenter">
-            <a href="#" class="flexcenter btn btn--sec1" id="bmwBtn">Узнать историю компании «Котофей»</a>
+            <a href="#" class="flexcenter btn btn--sec1" id="toRightBtn">Узнать историю компании «Котофей»</a>
           </div>
 
           <div class="s1__slide-cover"></div>
         </div>
 
         <div class="s2 slide">
-          <div class="s2__top">
-            <div class="s2-top__left">
-              История компании<br /><br />
+          <section class="main-section">
+            <div class="main-section__left" style="padding-right: 32px;">
+              <h1>История компании</h1>
+              <h3>«Котофей» — марка обуви, за которой стоит 85-летняя история</h3>
               <span>
                 А начиналось все осенью 1935 года, когда в помещении бывшей фабрики-кухни города Егорьевск, Московской
                 области было демонтировано оборудование, и начались работы по переустройству здания под промышленное
@@ -194,21 +196,28 @@
                 экономического кризиса удалось выйти.
               </span>
             </div>
-            <div class="s2-top__right">
-              <div id="img1">
-                <img src="https://i.pinimg.com/736x/3c/68/39/3c68398d41b4f814572be34df71a5055.jpg" alt="BMW" />
-                <div class="img-cap"></div>
-              </div>
-              <div id="img2">
-                <img src="https://sun9-56.userapi.com/c850420/v850420071/9f3d1/aHAv80Ef_EY.jpg" alt="BMW" />
-                <div class="img-cap"></div>
-              </div>
-              <div id="img3">
-                <img src="http://www.7-forum.com/news/2018/m5_story/bmw_m5_e60_006-b.jpg" alt="BMW" />
-                <div class="img-cap"></div>
+
+            <div class="main-section__right">
+              <div class="multi-images-4">
+                <div class="multi-images__image multi4-1">
+                  <img src="img/multi4/multiImg1.png" alt="Котофей" />
+                  <div class="multi-images__img-cap" id="multiImg1"></div>
+                </div>
+                <div class="multi-images__image">
+                  <img src="img/multi4/multiImg2.png" alt="Котофей" />
+                  <div class="multi-images__img-cap" id="multiImg2"></div>
+                </div>
+                <div class="multi-images__image">
+                  <img src="img/multi4/multiImg3.png" alt="Котофей" />
+                  <div class="multi-images__img-cap" id="multiImg3"></div>
+                </div>
+                <div class="multi-images__image multi4-4">
+                  <img src="img/multi4/multiImg4.png" alt="Котофей" />
+                  <div class="multi-images__img-cap" id="multiImg4"></div>
+                </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </section>
     </main>

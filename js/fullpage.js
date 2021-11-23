@@ -1,8 +1,9 @@
 let header = document.querySelector('.main-header');
-let bmwBtn = document.querySelector('#bmwBtn');
+let slideToSecondBtn = document.querySelector('#toRightBtn');
 let leftSlide = document.querySelector('.general-wrap');
 let rightSlide = document.querySelector('.s2');
 let rightSlideWrap;
+let rightOnTop = 0;
 
 let rightSlideWrapFinder = setInterval(() => {
     let targetEl = rightSlide.querySelector('.fp-scroller');
@@ -32,25 +33,15 @@ $('#fullPage').fullpage({
     }
 });
 
-let mouseWheel = gsap.timeline();
-mouseWheel.to('.scroll-down__wheel', { top: '15px', duration: 0.6, ease: 'power2' })
+// Блок для интро
+let mouseWheelBounce = gsap.timeline();
+mouseWheelBounce.to('.scroll-down__wheel', { top: '15px', duration: 0.6, ease: 'power2' })
     .to('.scroll-down__wheel', { top: '7px', duration: 0.5, ease: 'none' });
-mouseWheel.repeat(-1);
+mouseWheelBounce.repeat(-1);
 
-let toFirstSlide = gsap.timeline();
-
-toFirstSlide.to('#s1BG1', { top: '100%', duration: 1 })
-    .to('#s1BG2', { bottom: '100%', duration: 1, delay: -1 })
-    .to('#s1BG3', { left: '100%', duration: 1, delay: -1 })
-    .to('#s1BG4', { bottom: '100%', duration: 1, delay: -1 })
-    .to('#s1BG5', { left: '100%', duration: 1, delay: -1 })
-    .to('#s1BG6', { top: '100%', duration: 1, delay: -1 })
-    .to('#s1BG7', { left: '100%', duration: 1, delay: -1 });
-toFirstSlide.pause();
-
-watch.onclick = () => {
-    video2.play();
-    mouseWheel.pause();
+watchVideo.onclick = () => {
+    videoBG.play();
+    mouseWheelBounce.pause();
 };
 
 let introBlocks = document.querySelectorAll('.introState');
@@ -58,12 +49,10 @@ let isIntroState = true;
 
 document.addEventListener('wheel', evt => {
     if (evt.deltaY > 0 && isIntroState) {
-        introBlocks.forEach(el => {
-            el.classList.remove('introState');
-        });
+        introBlocks.forEach(el => el.classList.remove('introState'));
 
         setTimeout(() => {
-            toFirstSlide.play();
+            toFirstSlideGsap.play();
         }, 300);
 
         setTimeout(() => {
@@ -72,65 +61,73 @@ document.addEventListener('wheel', evt => {
                     el.remove();
             });
             isIntroState = false;
-            gsap.to('.scroll-down', { 'z-index': 997 });
+            gsap.to('.scroll-down', { 'z-index': 1 });
         }, 800);
     }
 });
 
-let tl = gsap.timeline();
-tl.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, ease: 'power2.out' })
-    .to('#img1 .img-cap', { top: '100%', duration: 0.7, delay: 0 })
-    .to('#img2 .img-cap', { bottom: '100%', duration: 0.7, delay: -0.7 })
-    .to('#img3 .img-cap', { left: '100%', duration: 0.7, delay: -0.7 })
-    .fromTo('.s2-top__left', { opacity: 0 }, { opacity: 1, duration: 1 });
-tl.pause();
+// Блок для перехода между 1/2(Left/Right) слайдами
+let toFirstSlideGsap = gsap.timeline();
+toFirstSlideGsap.to('#s1BG1', { top: '100%', duration: 1 })
+    .to('#s1BG2', { bottom: '100%', duration: 1, delay: -1 })
+    .to('#s1BG3', { left: '100%', duration: 1, delay: -1 })
+    .to('#s1BG4', { bottom: '100%', duration: 1, delay: -1 })
+    .to('#s1BG5', { left: '100%', duration: 1, delay: -1 })
+    .to('#s1BG6', { top: '100%', duration: 1, delay: -1 })
+    .to('#s1BG7', { left: '100%', duration: 1, delay: -1 });
+toFirstSlideGsap.pause();
 
-let rightOnTop = 0;
-
-document.addEventListener('wheel', evt => {
-    if (evt.deltaY > 0 && leftSlide.classList.contains('sCurrent') && !isIntroState) {
+let toFirstSlide = () => {
+    if (rightOnTop <= 3) {
+        rightOnTop++;
+    } else {
+        rightOnTop = 0;
         setTimeout(() => {
-            $.fn.fullpage.silentMoveTo(0, 1);
-        }, 900);
-        leftSlide.classList.remove('sCurrent');
-        rightSlide.classList.add('sCurrent');
-        tl.play();
-    } else if (evt.deltaY < 0 && !leftSlide.classList.contains('sCurrent') && rightSlideWrap) {
-        if (rightSlideWrap.style.transform.indexOf('translate(0px)') > -1 ||
-            rightSlideWrap.style.transform.indexOf('translate(0px, 0px)') > -1) {
-            if (rightOnTop <= 3) {
-                rightOnTop++;
-            } else {
-                rightOnTop = 0;
-                setTimeout(() => {
-                    $.fn.fullpage.silentMoveTo(0, 0);
-                }, 1700);
-                leftSlide.classList.add('sCurrent');
-                rightSlide.classList.remove('sCurrent');
-                tl.reverse();
-            }
-        }
-    } else if (evt.deltaY < 0 && !rightSlideWrap) {
-        if (rightOnTop <= 3) {
-            rightOnTop++;
-        } else {
-            rightOnTop = 0;
-            setTimeout(() => {
-                $.fn.fullpage.silentMoveTo(0, 0);
-            }, 1700);
-            leftSlide.classList.add('sCurrent');
-            rightSlide.classList.remove('sCurrent');
-            tl.reverse();
-        }
+            $.fn.fullpage.silentMoveTo(0, 0);
+            gsap.to('.scroll-down', { 'z-index': 1 });
+        }, 1700);
+        leftSlide.classList.add('sCurrent');
+        rightSlide.classList.remove('sCurrent');
+        to2SlideGsap.reverse();
     }
-    if (evt.deltaY > 0) rightOnTop = 0;
-});
+};
 
-bmwBtn.addEventListener('click', () => {
+let to2SlideGsap = gsap.timeline();
+to2SlideGsap.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, ease: 'power2.out' })
+    .to('#multiImg1', { top: '100%', duration: 0.7, delay: 0 })
+    .to('#multiImg2', { top: '100%', duration: 0.7, delay: -0.7 })
+    .to('#multiImg3', { left: '100%', duration: 0.7, delay: -0.7 })
+    .to('#multiImg4', { bottom: '100%', duration: 0.7, delay: -0.7 })
+    .fromTo('.main-section__left', { opacity: 0 }, { opacity: 1, duration: 1 });
+to2SlideGsap.pause();
+
+to2Slide = () => {
     setTimeout(() => {
         $.fn.fullpage.silentMoveTo(0, 1);
     }, 900);
+    setTimeout(() => {
+        gsap.to('.scroll-down', { 'z-index': -1 });
+    }, 300);
     leftSlide.classList.remove('sCurrent');
     rightSlide.classList.add('sCurrent');
-    tl.play();
+    to2SlideGsap.play();
+};
+
+document.addEventListener('wheel', evt => {
+    if (evt.deltaY > 0 && leftSlide.classList.contains('sCurrent') && !isIntroState) {
+        to2Slide();
+
+    } else if (evt.deltaY < 0 && !leftSlide.classList.contains('sCurrent') && rightSlideWrap) {
+        if (rightSlideWrap.style.transform.indexOf('translate(0px)') > -1 ||
+            rightSlideWrap.style.transform.indexOf('translate(0px, 0px)') > -1) {
+            toFirstSlide();
+        }
+
+    } else if (evt.deltaY < 0 && !rightSlideWrap) {
+        toFirstSlide();
+    }
+
+    if (evt.deltaY > 0) rightOnTop = 0;
 });
+
+slideToSecondBtn.addEventListener('click', () => { to2Slide(); });

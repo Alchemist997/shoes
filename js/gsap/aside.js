@@ -5,12 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let vw100 = document.documentElement.clientWidth;
 
     document.body.addEventListener('click', evt => {
-        if (!evt.target.classList.contains('github')) {
+        if (!evt.target.classList.contains('github'))
             evt.preventDefault();
-        }
-        if (!evt.target.closest('.vacancyToggleBtn')) {
+
+        if (!evt.target.closest('.vacancyToggleBtn'))
             return;
-        }
 
         if (vacancyWrap.classList.contains('hidden')) {
             vacancyWrap.classList.remove('hidden');
@@ -27,8 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 header.classList.add('white');
-                header.style.width = 'calc(100vw - 460px)';
             }, 220);
+
+            setTimeout(() => {
+                header.style.width = 'calc(100vw - 460px)';
+            }, 120);
 
             gsap.to('.vacancy-left', { duration: 0.5, x: 370 });
             gsap.to('.vacancy-main', { duration: 0.7, x: vw100, delay: 0.2 });

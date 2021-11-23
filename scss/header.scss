@@ -48,7 +48,7 @@
   }
 
   &.white {
-    color: #333;
+    color: $blackMain;
     background-color: $white;
 
     .main-header__link:hover::after {
