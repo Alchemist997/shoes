@@ -12,6 +12,18 @@ html {
   letter-spacing: 0.05em;
 }
 
+.nonScrollable {
+  overflow: hidden !important;
+
+  .s1__multiBG {
+    grid-template-columns: 15.3vw 19.8vw 50vw 14.9vw;
+  }
+}
+
+.dNone {
+  display: none !important;
+}
+
 a {
   text-decoration: none;
   color: inherit;

@@ -1,7 +1,3 @@
-.fp-part {
-  background-color: #ccc;
-}
-
 .btn--sec1 {
   background-color: $white;
   min-height: 64px;
@@ -13,13 +9,11 @@
   }
 }
 
-.general-wrap .s1 {
+.s1 {
   display: flex;
   align-items: stretch;
-}
-
-.s1 {
   position: relative;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
 
   &__multiBG {
@@ -34,7 +28,8 @@
     justify-items: stretch;
     align-items: stretch;
     grid-template-rows: 50vh 50vh;
-    grid-template-columns: 15.3vw 19.8vw 50vw 14.9vw;
+    grid-template-columns: 15.3vw 19.8vw 50vw 12vw;
+    // grid-template-columns: 15.3vw 19.8vw 50vw 14.9vw;
 
     .span2 {
       grid-column: span 2;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" id="mainHTML" class="nonScrollable">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,24 +7,20 @@
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.7/vendors/scrolloverflow.min.js"></script>
 
-    <script defer src="js/fullpage.js"></script>
-    <script defer src="js/gsap/aside.js"></script>
-    <script defer src="js/gsap/rightTrack.js"></script>
+    <script defer src="js/anims.js"></script>
+    <script defer src="js/aside.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" />
 
     <link rel="stylesheet" href="styles/reset.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css" />
     <link rel="stylesheet" href="styles/styles.css" />
 
     <title>Котофей</title>
   </head>
+
   <body>
     <div class="fixed-elements">
       <div class="main-logo flexcenter introState">
@@ -48,7 +44,7 @@
     </div>
 
     <div class="introBG introState">
-      <video id="videoBG" autoplay muted poster="img/kbg_dark.png">
+      <video id="videoBG" muted loop poster="img/kbg_dark.png">
         <source src="img/vid.mp4" type="video/mp4" />
       </video>
     </div>
@@ -103,7 +99,7 @@
     <aside class="main-aside">
       <div class="aside__always">
         <div class="aside__toggles-wrap">
-          <a href="#" class="aside__el toggle flexcenter vacancyToggleBtn">
+          <a href="#" class="aside__el toggle flexcenter vacancyToggleBtn" id="vacancyToggleBtn">
             <span class="rotate90">Найти своё призвание</span>
           </a>
           <a href="#" class="aside__el toggle flexcenter">
@@ -130,296 +126,285 @@
       </div>
     </aside>
 
-    <main id="fullPage">
-      <section class="general-wrap part active sCurrent">
-        <div class="s1 slide">
-          <div class="s1__multiBG">
-            <div class="s1__bg-img-wrap">
-              <img src="img/bg1.png" alt="background" />
-              <div class="s1__img-cap" id="s1BG1"></div>
-            </div>
-            <div class="s1__bg-img-wrap">
-              <img src="img/bg2.png" alt="background" />
-              <div class="s1__img-cap" id="s1BG2"></div>
-            </div>
-            <div class="s1__bg-img-wrap">
-              <img src="img/bg3.png" alt="background" />
-              <div class="s1__img-cap" id="s1BG3"></div>
-            </div>
-            <div class="s1__bg-img-wrap">
-              <img src="img/bg4.png" alt="background" />
-              <div class="s1__img-cap" id="s1BG4"></div>
-            </div>
-            <div class="s1__bg-img-wrap span2">
-              <img src="img/bg5.png" alt="background" />
-              <div class="s1__img-cap" id="s1BG5"></div>
-            </div>
-            <div class="s1__bg-img-wrap">
-              <img src="img/bg6.png" alt="background" />
-              <div class="s1__img-cap" id="s1BG6"></div>
-            </div>
-            <div class="s1__bg-img-wrap">
-              <img src="img/bg7.png" alt="background" />
-              <div class="s1__img-cap" id="s1BG7"></div>
-            </div>
+    <main class="main-slides">
+      <section class="s1">
+        <div class="s1__multiBG">
+          <div class="s1__bg-img-wrap">
+            <img src="img/bg1.png" alt="background" />
+            <div class="s1__img-cap" id="s1BG1"></div>
           </div>
-
-          <div class="s1__block s1__block--left flexcenter">
-            <a href="#" class="flexcenter btn btn--sec1">Поиск вакансий</a>
-            <span></span>
-            <a href="#" class="flexcenter btn btn--sec1 vacancyToggleBtn">Найти своё призвание</a>
+          <div class="s1__bg-img-wrap">
+            <img src="img/bg2.png" alt="background" />
+            <div class="s1__img-cap" id="s1BG2"></div>
           </div>
-
-          <div class="s1__block s1__block--right flexcenter">
-            <a href="#" class="flexcenter btn btn--sec1" id="toRightBtn">Узнать историю компании «Котофей»</a>
+          <div class="s1__bg-img-wrap">
+            <img src="img/bg3.png" alt="background" />
+            <div class="s1__img-cap" id="s1BG3"></div>
           </div>
-
-          <div class="s1__slide-cover"></div>
+          <div class="s1__bg-img-wrap">
+            <img src="img/bg4.png" alt="background" />
+            <div class="s1__img-cap" id="s1BG4"></div>
+          </div>
+          <div class="s1__bg-img-wrap span2">
+            <img src="img/bg5.png" alt="background" />
+            <div class="s1__img-cap" id="s1BG5"></div>
+          </div>
+          <div class="s1__bg-img-wrap">
+            <img src="img/bg6.png" alt="background" />
+            <div class="s1__img-cap" id="s1BG6"></div>
+          </div>
+          <div class="s1__bg-img-wrap">
+            <img src="img/bg7.png" alt="background" />
+            <div class="s1__img-cap" id="s1BG7"></div>
+          </div>
         </div>
 
-        <div class="s2 slide">
-          <section class="main-section">
-            <div class="main-section__left">
-              <h1>История компании</h1>
-              <h3>«Котофей» — марка обуви, за которой стоит 85-летняя история</h3>
-              <p class="text">
-                А начиналось все осенью 1935 года, когда в помещении бывшей фабрики-кухни города Егорьевск, Московской
-                области было демонтировано оборудование, и начались работы по переустройству здания под промышленное
-                предприятие. Одновременно с монтажными работами в одном из помещений временно были установлены обувные
-                машины, и началось обучение рабочих — будущих специалистов, которые впоследствии стали костяком
-                предприятия. Уже в сентябре 1936 года в основном все операции обувного потока были укомплектованы
-                обученными кадрами, а 30 декабря этого же года Государственной комиссией фабрика была принята к
-                эксплуатации, и начался выпуск первой плановой продукции. К началу 90-х годов фабрика выпускала более 3
-                миллионов пар детской обуви в год. Затем в связи с известными экономическими причинами начался затяжной
-                спад, в результате в 1998 году фабрика выпустила всего 400 тыс. пар. Благодаря правильно выбранной
-                стратегии развития производства, созданию новых моделей, плодотворной работе всего коллектива из
-                экономического кризиса удалось выйти.
-              </p>
-            </div>
+        <div class="s1__block s1__block--left flexcenter">
+          <a href="#" class="flexcenter btn btn--sec1">Поиск вакансий</a>
+          <span></span>
+          <a href="#" class="flexcenter btn btn--sec1 vacancyToggleBtn">Найти своё призвание</a>
+        </div>
 
-            <div class="main-section__right">
-              <div class="multi-images-4">
-                <div class="multi-images__image multi4-1">
-                  <img src="img/multi4/multiImg1.png" alt="Котофей" />
-                  <div class="multi-images__img-cap" id="multiImg1"></div>
-                </div>
-                <div class="multi-images__image">
-                  <img src="img/multi4/multiImg2.png" alt="Котофей" />
-                  <div class="multi-images__img-cap" id="multiImg2"></div>
-                </div>
-                <div class="multi-images__image">
-                  <img src="img/multi4/multiImg3.png" alt="Котофей" />
-                  <div class="multi-images__img-cap" id="multiImg3"></div>
-                </div>
-                <div class="multi-images__image multi4-4">
-                  <img src="img/multi4/multiImg4.png" alt="Котофей" />
-                  <div class="multi-images__img-cap" id="multiImg4"></div>
-                </div>
-              </div>
-            </div>
-          </section>
+        <div class="s1__block s1__block--right flexcenter">
+          <a href="#" class="flexcenter btn btn--sec1" id="toRightBtn">Узнать историю компании «Котофей»</a>
+        </div>
 
-          <section class="main-section">
-            <div class="main-section__left">
-              <h1>События и даты</h1>
-              <h3>1936–1996 год</h3>
-              <div class="text history-points">
-                <section class="history-point">
-                  <p class="history-point__year">1936 год</p>
-                  <p class="history-point__text">
-                    Была принята к эксплуатации Егорьевская специализированная фабрика по выпуску детской обуви
-                  </p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">1940 год</p>
-                  <p class="history-point__text">
-                    Было изготовлено 1 040 000 пар. Даже во время войны производство не останавливалось
-                  </p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">1948 год</p>
-                  <p class="history-point__text">Производство достигло прежнего уровня</p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">1996 год</p>
-                  <p class="history-point__text">
-                    Фабрика подписала контракт на выполнение заказа по производству детской обуви с итальянской
-                    компанией IGI, из её материалов, под технологическим контролем итальянских специалистов
-                  </p>
-                </section>
-              </div>
-            </div>
+        <div class="s1__slide-cover"></div>
+      </section>
 
-            <div class="main-section__right">
-              <img src="img/firstEmployee.png" alt="Сотрудница фабрики за работой" />
-            </div>
-          </section>
+      <section class="s2 main-section">
+        <div class="main-section__left">
+          <h1>История компании</h1>
+          <h3>«Котофей» — марка обуви, за которой стоит 85-летняя история</h3>
+          <p class="text">
+            А начиналось все осенью 1935 года, когда в помещении бывшей фабрики-кухни города Егорьевск, Московской
+            области было демонтировано оборудование, и начались работы по переустройству здания под промышленное
+            предприятие. Одновременно с монтажными работами в одном из помещений временно были установлены обувные
+            машины, и началось обучение рабочих — будущих специалистов, которые впоследствии стали костяком предприятия.
+            Уже в сентябре 1936 года в основном все операции обувного потока были укомплектованы обученными кадрами, а
+            30 декабря этого же года Государственной комиссией фабрика была принята к эксплуатации, и начался выпуск
+            первой плановой продукции. К началу 90-х годов фабрика выпускала более 3 миллионов пар детской обуви в год.
+            Затем в связи с известными экономическими причинами начался затяжной спад, в результате в 1998 году фабрика
+            выпустила всего 400 тыс. пар. Благодаря правильно выбранной стратегии развития производства, созданию новых
+            моделей, плодотворной работе всего коллектива из экономического кризиса удалось выйти.
+          </p>
+        </div>
 
-          <section class="main-section">
-            <div class="main-section__left">
-              <h1>События и даты</h1>
-              <h3>2001–2007 год</h3>
-              <div class="text history-points">
-                <section class="history-point">
-                  <p class="history-point__year">2001 год</p>
-                  <p class="history-point__text">Зарегистрирована ТМ «Котофей»</p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2002 год</p>
-                  <p class="history-point__text">Подписан договор с ОАО «Комплект», ООО «КурскОбувь»</p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2004 год</p>
-                  <p class="history-point__text">
-                    Подписан договор о сотрудничестве с предприятием ООО «КурскОбувь», реализован 1 000 000 пар детской
-                    обуви, получение международного сертификата соответствия требованиям стандарта ISO 9001:2000
-                  </p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2005 год</p>
-                  <p class="history-point__text">
-                    Начало строительство новой производственной площадки по адресу: г. Егорьевск, ул. Владимирская, д. 8
-                  </p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2006 год</p>
-                  <p class="history-point__text">
-                    Подписан договор с ООО «Сурана» г. Зарайск по производству детской обуви ТМ «Котофей, выпущено 1 500
-                    000 пар в год
-                  </p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2007 год</p>
-                  <p class="history-point__text">
-                    Завершение строительства новой производственной площадки, размещен заказ на производство ТМ
-                    «Котофей» на Калужской обувной фабрике, открытие новой производственной площадки ОАО
-                    «Егорьевск-обувь», выпущено 2 500 000 пар в год
-                  </p>
-                </section>
-              </div>
+        <div class="main-section__right">
+          <div class="multi-images-4">
+            <div class="multi-images__image multi4-1">
+              <img src="img/multi4/multiImg1.png" alt="Котофей" />
+              <div class="multi-images__img-cap" id="multiImg1"></div>
             </div>
-
-            <div class="main-section__right">
-              <img src="img/kamazCrane.png" alt="Автокран на стройке нового объекта" />
+            <div class="multi-images__image">
+              <img src="img/multi4/multiImg2.png" alt="Котофей" />
+              <div class="multi-images__img-cap" id="multiImg2"></div>
             </div>
-          </section>
-
-          <section class="main-section">
-            <div class="main-section__left">
-              <h1>События и даты</h1>
-              <h3>2008–2013 год</h3>
-              <div class="text history-points">
-                <section class="history-point">
-                  <p class="history-point__year">2008 год</p>
-                  <p class="history-point__text">Выпущено 3 000 000 пар в год</p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2009 год</p>
-                  <p class="history-point__text">Производство 2 085 000 пар в год</p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2010 год</p>
-                  <p class="history-point__text">Производство 2 682 000 пар в год</p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2011 год</p>
-                  <p class="history-point__text">Запуск логистического склада</p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2012 год</p>
-                  <p class="history-point__text">В компании произошла смена логотипа</p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2013 год</p>
-                  <p class="history-point__text">
-                    ОАО «Егорьевск-обувь» удостоено почетного звания «Лидер России 2013»
-                  </p>
-                </section>
-              </div>
+            <div class="multi-images__image">
+              <img src="img/multi4/multiImg3.png" alt="Котофей" />
+              <div class="multi-images__img-cap" id="multiImg3"></div>
             </div>
-
-            <div class="main-section__right">
-              <img src="img/sert1.png" alt="Федеральный сертификат и медаль" />
+            <div class="multi-images__image multi4-4">
+              <img src="img/multi4/multiImg4.png" alt="Котофей" />
+              <div class="multi-images__img-cap" id="multiImg4"></div>
             </div>
-          </section>
-
-          <section class="main-section">
-            <div class="main-section__left">
-              <h1>События и даты</h1>
-              <h3>2014–2018 год</h3>
-              <div class="text history-points">
-                <section class="history-point">
-                  <p class="history-point__year">2014 год</p>
-                  <p class="history-point__text">
-                    ТМ «Котофей» подтвердила соответствие программе «Российское качество»
-                  </p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2015 год</p>
-                  <p class="history-point__text">
-                    Фабрика начала производить взрослые валенки под товарным знаком «Гуслицкие». ОАО «Егорьевск-обувь»
-                    удостоено почетного звания «Лидер России 2015», а также получило национальную премию в области
-                    индустрии моды «Золотое веретено»
-                  </p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2018 год</p>
-                  <p class="history-point__text">
-                    В компании проведен ребрендинг, внедрен новый логотип и фирменный стиль
-                  </p>
-                </section>
-              </div>
-            </div>
-
-            <div class="main-section__right">
-              <img src="img/showroom.png" alt="Шоурум «Котофей»" />
-            </div>
-          </section>
-
-          <section class="main-section">
-            <div class="main-section__left">
-              <h1>События и даты</h1>
-              <h3>2019–2021 год</h3>
-              <div class="text history-points">
-                <section class="history-point">
-                  <p class="history-point__year">2019 год</p>
-                  <p class="history-point__text">
-                    ТМ «Котофей» в четвертый раз получила премию — «Товар Года» в номинации «Детская обувь». Ранее ТМ
-                    «Котофей» получила премию «Товар года» в 2017, 2015 и в 2013 годах. ТМ «Котофей» победитель Народной
-                    Премии «Выбор Родителей» в категории «Детская обувь»
-                  </p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2020 год</p>
-                  <p class="history-point__text">
-                    Обувь «Котофей» успешно прошла тестирование амбассадорами «Совета матерей» при поддержке Ассоциации
-                    «Выбор Родителей» и заняла I место во Всероссийском Конкурсе «Мамы в деле» в категории «Лучшая
-                    детская обувь». Открыто 150 фирменных магазинов ТМ «Котофей»
-                  </p>
-                </section>
-                <section class="history-point">
-                  <p class="history-point__year">2021 год</p>
-                  <p class="history-point__text">85-летний юбилей АО «Егорьевск-обувь»</p>
-                </section>
-              </div>
-            </div>
-
-            <div class="main-section__right">
-              <img src="img/sert2.png" alt="Сертификат и диплом" />
-            </div>
-          </section>
-
-          <footer class="main-footer">
-            <img class="main-footer__el" src="img/logo_full.svg" alt="Логотип «Котофей»" />
-            <img class="main-footer__el" src="img/guslickie.svg" alt="Логотип «Гуслицкие" />
-            <div class="main-footer__el">
-              <div>«Котофей» © 2010-2021</div>
-              <div>Политика конфиденциальности</div>
-            </div>
-            <a href="https://richbee.ru/" target="_blank" class="github">Сделано в Richbee</a>
-          </footer>
+          </div>
         </div>
       </section>
+
+      <section class="main-section">
+        <div class="main-section__left">
+          <h1>События и даты</h1>
+          <h3>1936–1996 год</h3>
+          <div class="text history-points">
+            <section class="history-point">
+              <p class="history-point__year">1936 год</p>
+              <p class="history-point__text">
+                Была принята к эксплуатации Егорьевская специализированная фабрика по выпуску детской обуви
+              </p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">1940 год</p>
+              <p class="history-point__text">
+                Было изготовлено 1 040 000 пар. Даже во время войны производство не останавливалось
+              </p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">1948 год</p>
+              <p class="history-point__text">Производство достигло прежнего уровня</p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">1996 год</p>
+              <p class="history-point__text">
+                Фабрика подписала контракт на выполнение заказа по производству детской обуви с итальянской компанией
+                IGI, из её материалов, под технологическим контролем итальянских специалистов
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <div class="main-section__right">
+          <img src="img/firstEmployee.png" alt="Сотрудница фабрики за работой" />
+        </div>
+      </section>
+
+      <section class="main-section">
+        <div class="main-section__left">
+          <h1>События и даты</h1>
+          <h3>2001–2007 год</h3>
+          <div class="text history-points">
+            <section class="history-point">
+              <p class="history-point__year">2001 год</p>
+              <p class="history-point__text">Зарегистрирована ТМ «Котофей»</p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2002 год</p>
+              <p class="history-point__text">Подписан договор с ОАО «Комплект», ООО «КурскОбувь»</p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2004 год</p>
+              <p class="history-point__text">
+                Подписан договор о сотрудничестве с предприятием ООО «КурскОбувь», реализован 1 000 000 пар детской
+                обуви, получение международного сертификата соответствия требованиям стандарта ISO 9001:2000
+              </p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2005 год</p>
+              <p class="history-point__text">
+                Начало строительство новой производственной площадки по адресу: г. Егорьевск, ул. Владимирская, д. 8
+              </p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2006 год</p>
+              <p class="history-point__text">
+                Подписан договор с ООО «Сурана» г. Зарайск по производству детской обуви ТМ «Котофей, выпущено 1 500 000
+                пар в год
+              </p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2007 год</p>
+              <p class="history-point__text">
+                Завершение строительства новой производственной площадки, размещен заказ на производство ТМ «Котофей» на
+                Калужской обувной фабрике, открытие новой производственной площадки ОАО «Егорьевск-обувь», выпущено 2
+                500 000 пар в год
+              </p>
+            </section>
+          </div>
+        </div>
+
+        <div class="main-section__right">
+          <img src="img/kamazCrane.png" alt="Автокран на стройке нового объекта" />
+        </div>
+      </section>
+
+      <section class="main-section">
+        <div class="main-section__left">
+          <h1>События и даты</h1>
+          <h3>2008–2013 год</h3>
+          <div class="text history-points">
+            <section class="history-point">
+              <p class="history-point__year">2008 год</p>
+              <p class="history-point__text">Выпущено 3 000 000 пар в год</p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2009 год</p>
+              <p class="history-point__text">Производство 2 085 000 пар в год</p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2010 год</p>
+              <p class="history-point__text">Производство 2 682 000 пар в год</p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2011 год</p>
+              <p class="history-point__text">Запуск логистического склада</p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2012 год</p>
+              <p class="history-point__text">В компании произошла смена логотипа</p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2013 год</p>
+              <p class="history-point__text">ОАО «Егорьевск-обувь» удостоено почетного звания «Лидер России 2013»</p>
+            </section>
+          </div>
+        </div>
+
+        <div class="main-section__right">
+          <img src="img/sert1.png" alt="Федеральный сертификат и медаль" />
+        </div>
+      </section>
+
+      <section class="main-section">
+        <div class="main-section__left">
+          <h1>События и даты</h1>
+          <h3>2014–2018 год</h3>
+          <div class="text history-points">
+            <section class="history-point">
+              <p class="history-point__year">2014 год</p>
+              <p class="history-point__text">ТМ «Котофей» подтвердила соответствие программе «Российское качество»</p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2015 год</p>
+              <p class="history-point__text">
+                Фабрика начала производить взрослые валенки под товарным знаком «Гуслицкие». ОАО «Егорьевск-обувь»
+                удостоено почетного звания «Лидер России 2015», а также получило национальную премию в области индустрии
+                моды «Золотое веретено»
+              </p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2018 год</p>
+              <p class="history-point__text">В компании проведен ребрендинг, внедрен новый логотип и фирменный стиль</p>
+            </section>
+          </div>
+        </div>
+
+        <div class="main-section__right">
+          <img src="img/showroom.png" alt="Шоурум «Котофей»" />
+        </div>
+      </section>
+
+      <section class="main-section">
+        <div class="main-section__left">
+          <h1>События и даты</h1>
+          <h3>2019–2021 год</h3>
+          <div class="text history-points">
+            <section class="history-point">
+              <p class="history-point__year">2019 год</p>
+              <p class="history-point__text">
+                ТМ «Котофей» в четвертый раз получила премию — «Товар Года» в номинации «Детская обувь». Ранее ТМ
+                «Котофей» получила премию «Товар года» в 2017, 2015 и в 2013 годах. ТМ «Котофей» победитель Народной
+                Премии «Выбор Родителей» в категории «Детская обувь»
+              </p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2020 год</p>
+              <p class="history-point__text">
+                Обувь «Котофей» успешно прошла тестирование амбассадорами «Совета матерей» при поддержке Ассоциации
+                «Выбор Родителей» и заняла I место во Всероссийском Конкурсе «Мамы в деле» в категории «Лучшая детская
+                обувь». Открыто 150 фирменных магазинов ТМ «Котофей»
+              </p>
+            </section>
+            <section class="history-point">
+              <p class="history-point__year">2021 год</p>
+              <p class="history-point__text">85-летний юбилей АО «Егорьевск-обувь»</p>
+            </section>
+          </div>
+        </div>
+
+        <div class="main-section__right">
+          <img src="img/sert2.png" alt="Сертификат и диплом" />
+        </div>
+      </section>
+
+      <footer class="main-footer">
+        <img class="main-footer__el" src="img/logo_full.svg" alt="Логотип «Котофей»" />
+        <img class="main-footer__el" src="img/guslickie.svg" alt="Логотип «Гуслицкие" />
+        <div class="main-footer__el">
+          <div>«Котофей» © 2010-2021</div>
+          <div>Политика конфиденциальности</div>
+        </div>
+        <a href="https://richbee.ru/" target="_blank" class="github">Сделано в Richbee</a>
+      </footer>
     </main>
   </body>
 </html>

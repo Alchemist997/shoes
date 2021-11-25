@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let vacancyWrap = document.querySelector('.aside__vacancy');
     let vacancyCounter = document.querySelector('.vacancy-left-text span');
 
-    let vw100 = document.documentElement.clientWidth;
+    const vw100 = () => { return document.documentElement.clientWidth; };
 
     document.body.addEventListener('click', evt => {
         if (!evt.target.classList.contains('github'))
@@ -29,20 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 220);
 
             setTimeout(() => {
-                header.style.width = 'calc(100vw - 460px)';
+                header.style.width = `calc(${vw100()}px - 460px)`;
             }, 120);
 
             gsap.to('.vacancy-left', { duration: 0.5, x: 370 });
-            gsap.to('.vacancy-main', { duration: 0.7, x: vw100, delay: 0.2 });
+            gsap.to('.vacancy-main', { duration: 0.7, x: vw100(), delay: 0.2 });
         } else {
             gsap.to('.vacancy-main', { duration: 0.8, x: 0 });
             gsap.to('.vacancy-left', { duration: 0.5, x: 0, delay: 0.35 });
-            if (leftSlide.classList.contains('sCurrent')) {
+            if (!states.main) {
                 header.classList.remove('white');
             }
             setTimeout(() => {
                 header.style.width = 'calc(100% - 100px)';
-            }, 400);
+            }, 370);
             setTimeout(() => {
                 vacancyWrap.classList.add('hidden');
             }, 750);
