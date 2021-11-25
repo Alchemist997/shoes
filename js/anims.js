@@ -119,10 +119,10 @@ let to1Slide = () => {
 
 let to2SlideGsap = gsap.timeline();
 to2SlideGsap.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, delay: 0.9, ease: 'power2.out' })
-    .to('#multiImg1', { top: '100%', duration: 0.7, delay: -0.3 })
-    .to('#multiImg2', { top: '100%', duration: 0.7, delay: -0.7 })
-    .to('#multiImg3', { left: '100%', duration: 0.7, delay: -0.7 })
-    .to('#multiImg4', { bottom: '100%', duration: 0.7, delay: -0.7 })
+    .to('#multi4Img1', { top: '100%', duration: 0.7, delay: -0.3 })
+    .to('#multi4Img2', { top: '100%', duration: 0.7, delay: -0.7 })
+    .to('#multi4Img3', { left: '100%', duration: 0.7, delay: -0.7 })
+    .to('#multi4Img4', { bottom: '100%', duration: 0.7, delay: -0.7 })
     .fromTo('.s2 h1, .s2 h3', { opacity: 0 }, { opacity: 1, duration: 1 })
     .fromTo('.s2 .text', { opacity: 0 }, {
         opacity: 1, duration: 0.7, delay: -0.6,
@@ -152,3 +152,17 @@ let to2Slide = () => {
 };
 
 btnToMain.addEventListener('click', () => to2Slide());
+
+// let horizontalScrollMotion = gsap.timeline();
+// horizontalScrollMotion.fromTo('#i1', { x: 0 }, { x: '-=220%' });
+// horizontalScrollMotion.fromTo('#i2', { x: 0 }, { x: '-=80%' });
+// horizontalScrollMotion.fromTo('#i3', { x: 0 }, { x: '-=120%' });
+
+// ScrollTrigger.create({
+//     animation: horizontalScrollMotion,
+//     trigger: '.m3',
+//     start: '500 500',
+//     end: '+=2000',
+//     scrub: true,
+//     pin: true,
+// });
