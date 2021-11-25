@@ -15,6 +15,7 @@ const states = {
     intro: true,
     screen1: false,
     main: false,
+    aside: false,
 };
 
 
@@ -32,6 +33,9 @@ document.addEventListener('wheel', evt => {
     if (states.animIsActive)
         return evt.preventDefault();
 
+    if (states.aside)
+        return;
+
     // Переключение intro/screen1
     if (isScrollDown(evt) && states.intro && !states.screen1 && !states.main) {
         introBlocks.forEach(el => el.classList.remove('introState'));
@@ -48,13 +52,12 @@ document.addEventListener('wheel', evt => {
             });
             videoBG.load();
             mouseWheelBounce.play();
+            zMouse(1);
             states.intro = false;
         }, 1000);
 
     } else if (isScrollUp(evt) && !states.intro && states.screen1 && !states.main) {
         zMouse(7777);
-        if (header.classList.contains('white'))
-            vacancyToggleBtn.click();
         to1SlideGsap.reverse();
         introBlocks.forEach(el => el.classList.remove('dNone'));
         states.intro = true;
@@ -76,12 +79,13 @@ document.addEventListener('wheel', evt => {
         }
         html.classList.add('nonScrollable');
         states.screen1 = true;
+        to1Slide();
         setTimeout(() => {
             states.main = false;
             screen1.classList.remove('dNone');
             screen1.scrollIntoView();
-        }, 2000);
-        to1Slide();
+            zMouse(1);
+        }, 1800);
     }
 
     if (isScrollDown(evt)) mainTopCounter = 0;
@@ -96,10 +100,7 @@ to1SlideGsap.to('#s1BG1', { top: '100%', duration: 1 })
     .to('#s1BG6', { top: '100%', duration: 1, delay: -1 })
     .to('#s1BG7', {
         left: '100%', duration: 1, delay: -1,
-        onComplete: () => {
-            states.animIsActive = false;
-            zMouse(1);
-        }
+        onComplete: () => { states.animIsActive = false; }
     });
 to1SlideGsap.pause();
 
@@ -109,25 +110,26 @@ let to1Slide = () => {
 
     states.animIsActive = true;
     mainTopCounter = 0;
-    to1SlideGsap.play();
     to2SlideGsap.reverse();
     setTimeout(() => {
+        to1SlideGsap.play();
         header.classList.remove('white');
-    }, 1500);
+    }, 2100);
 };
 
 let to2SlideGsap = gsap.timeline();
-to2SlideGsap.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, delay: 1, ease: 'power2.out' })
-    .to('#multiImg1', { top: '100%', duration: 0.7, delay: 0 })
+to2SlideGsap.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, delay: 0.9, ease: 'power2.out' })
+    .to('#multiImg1', { top: '100%', duration: 0.7, delay: -0.3 })
     .to('#multiImg2', { top: '100%', duration: 0.7, delay: -0.7 })
     .to('#multiImg3', { left: '100%', duration: 0.7, delay: -0.7 })
     .to('#multiImg4', { bottom: '100%', duration: 0.7, delay: -0.7 })
-    .fromTo('.main-section__left', { opacity: 0 }, {
-        opacity: 1, duration: 1,
+    .fromTo('.s2 h1, .s2 h3', { opacity: 0 }, { opacity: 1, duration: 1 })
+    .fromTo('.s2 .text', { opacity: 0 }, {
+        opacity: 1, duration: 0.7, delay: -0.6,
         onComplete: () => states.animIsActive = false
     })
     .to('.scroll-down', {
-        'z-index': -1, delay: -2.7,
+        'z-index': -1, delay: -2.5,
         onComplete: () => {
             html.classList.remove('nonScrollable');
             screen1.classList.add('dNone');
@@ -149,4 +151,4 @@ let to2Slide = () => {
     }, 2000);
 };
 
-btnToMain.addEventListener('click', () => { to2Slide(); });
+btnToMain.addEventListener('click', () => to2Slide());

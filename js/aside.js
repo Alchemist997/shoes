@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (vacancyWrap.classList.contains('hidden')) {
             vacancyWrap.classList.remove('hidden');
+            html.classList.add('nonScrollable');
+            states.aside = true;
 
             let i = 200;
             let counter = setInterval(() => {
@@ -45,6 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 370);
             setTimeout(() => {
                 vacancyWrap.classList.add('hidden');
+                states.aside = false;
+                if (states.main)
+                    html.classList.remove('nonScrollable');
             }, 750);
         }
     });

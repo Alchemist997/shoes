@@ -70,6 +70,7 @@
   }
 
   .vacancy-left {
+    overflow-y: scroll;
     width: 360px;
     padding-left: 32px;
     z-index: 992;
@@ -84,6 +85,8 @@
   }
 
   .vacancy-main {
+    overflow-y: scroll;
+    flex-direction: column;
     width: calc(100vw - 460px);
     z-index: 991;
     position: relative;
