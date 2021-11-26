@@ -29,12 +29,16 @@ watchVideo.onclick = () => {
     mouseWheelBounce.pause();
 };
 
+let i = 0;
+
 document.addEventListener('wheel', evt => {
     if (states.animIsActive)
         return evt.preventDefault();
 
     if (states.aside)
         return;
+    i++;
+    console.log(i);
 
     // Переключение intro/screen1
     if (isScrollDown(evt) && states.intro && !states.screen1 && !states.main) {
@@ -100,7 +104,7 @@ to1SlideGsap.to('#s1BG1', { top: '100%', duration: 1 })
     .to('#s1BG6', { top: '100%', duration: 1, delay: -1 })
     .to('#s1BG7', {
         left: '100%', duration: 1, delay: -1,
-        onComplete: () => { states.animIsActive = false; }
+        onComplete: () => { states.animIsActive = false; console.log('end1')}
     });
 to1SlideGsap.pause();
 
@@ -109,6 +113,7 @@ let to1Slide = () => {
         return;
 
     states.animIsActive = true;
+    console.log('start1')
     mainTopCounter = 0;
     to2SlideGsap.reverse();
     setTimeout(() => {
@@ -126,7 +131,7 @@ to2SlideGsap.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, dela
     .fromTo('.s2 h1, .s2 h3', { opacity: 0 }, { opacity: 1, duration: 1 })
     .fromTo('.s2 .text', { opacity: 0 }, {
         opacity: 1, duration: 0.7, delay: -0.6,
-        onComplete: () => states.animIsActive = false
+        onComplete: () => {states.animIsActive = false; console.log('end2')}
     })
     .to('.scroll-down', {
         'z-index': -1, delay: -2.5,
@@ -142,6 +147,7 @@ let to2Slide = () => {
         return;
 
     states.animIsActive = true;
+    console.log('start2')
     states.main = true;
     to1SlideGsap.reverse();
     to2SlideGsap.play();
