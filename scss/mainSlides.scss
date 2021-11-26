@@ -18,21 +18,45 @@
   &__left {
     position: relative;
     width: 50%;
-    padding-right: 32px;
+    padding-right: 96px;
     padding-left: 160px;
     padding-top: 48px;
     font-size: 18px;
 
-    &::before {
+    &::before,
+    &::after {
       content: '';
       position: absolute;
       z-index: -1;
       display: inline-block;
       top: 0;
       bottom: -107px;
-      left: 160px;
       width: 1px;
       background-color: $white05;
+    }
+
+    &::before {
+      left: 160px;
+    }
+
+    &::after {
+      right: 0;
+    }
+
+    &.sbr {
+      li {
+        line-height: 1.5;
+        position: relative;
+        padding-left: 25px;
+
+        &::before {
+          content: '\2022';
+          display: inline-block;
+          position: absolute;
+          left: 10px;
+          top: 0.2em;
+        }
+      }
     }
   }
 
@@ -51,8 +75,8 @@
   }
 
   .multi-images {
-    &-4,
-    &-3 {
+    &--4,
+    &--3 {
       flex-grow: 1;
       display: grid;
       justify-items: stretch;
@@ -60,7 +84,7 @@
       grid-template-columns: repeat(2, 50%);
     }
 
-    &-4 {
+    &--4 {
       grid-template-rows: 50% 14% 36%;
 
       .multi4-1 {
@@ -72,7 +96,7 @@
       }
     }
 
-    &-3 {
+    &--3 {
       max-height: 70vh;
       grid-template-rows: 30% 70%;
 
@@ -82,6 +106,47 @@
 
       .multi-images__img-cap {
         bottom: 100%;
+      }
+    }
+
+    &--brand {
+      flex-grow: 1;
+      display: grid;
+      grid-template-rows: repeat(2, 50%);
+      grid-template-columns: auto;
+    }
+
+    &__brand-block {
+      display: grid;
+      grid-template-rows: auto;
+      grid-template-columns: 27% 36.5% 36.5%;
+
+      .brand-img-wrap {
+        position: relative;
+        grid-column: 2/3;
+
+        img {
+          object-fit: contain;
+        }
+
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          display: inline-block;
+          top: -107px;
+          bottom: 0;
+          width: 1px;
+          background-color: $white05;
+        }
+
+        &::before {
+          left: -1px;
+        }
+
+        &::after {
+          right: -1px;
+        }
       }
     }
 

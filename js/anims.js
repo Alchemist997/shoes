@@ -104,7 +104,7 @@ to1SlideGsap.to('#s1BG1', { top: '100%', duration: 1 })
     .to('#s1BG6', { top: '100%', duration: 1, delay: -1 })
     .to('#s1BG7', {
         left: '100%', duration: 1, delay: -1,
-        onComplete: () => { states.animIsActive = false; console.log('end1')}
+        onComplete: () => { states.animIsActive = false; console.log('end1'); }
     });
 to1SlideGsap.pause();
 
@@ -113,7 +113,7 @@ let to1Slide = () => {
         return;
 
     states.animIsActive = true;
-    console.log('start1')
+    console.log('start1');
     mainTopCounter = 0;
     to2SlideGsap.reverse();
     setTimeout(() => {
@@ -131,13 +131,14 @@ to2SlideGsap.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, dela
     .fromTo('.s2 h1, .s2 h3', { opacity: 0 }, { opacity: 1, duration: 1 })
     .fromTo('.s2 .text', { opacity: 0 }, {
         opacity: 1, duration: 0.7, delay: -0.6,
-        onComplete: () => {states.animIsActive = false; console.log('end2')}
+        onComplete: () => { states.animIsActive = false; console.log('end2'); }
     })
     .to('.scroll-down', {
         'z-index': -1, delay: -2.5,
         onComplete: () => {
             html.classList.remove('nonScrollable');
             screen1.classList.add('dNone');
+            // bmw()
         }
     });
 to2SlideGsap.pause();
@@ -147,7 +148,7 @@ let to2Slide = () => {
         return;
 
     states.animIsActive = true;
-    console.log('start2')
+    console.log('start2');
     states.main = true;
     to1SlideGsap.reverse();
     to2SlideGsap.play();
@@ -160,15 +161,34 @@ let to2Slide = () => {
 btnToMain.addEventListener('click', () => to2Slide());
 
 // let horizontalScrollMotion = gsap.timeline();
-// horizontalScrollMotion.fromTo('#i1', { x: 0 }, { x: '-=220%' });
-// horizontalScrollMotion.fromTo('#i2', { x: 0 }, { x: '-=80%' });
-// horizontalScrollMotion.fromTo('#i3', { x: 0 }, { x: '-=120%' });
+// horizontalScrollMotion.to('#i1', { x: '-=150%', ease: 'bounce.out', duration: 1 });
+// horizontalScrollMotion.to('#i2', { x: '-=180%', duration: 1, delay: -1 });
+// horizontalScrollMotion.to('#i3', { x: '-=180%', y: '-=50px', duration: 1, delay: -1 });
 
-// ScrollTrigger.create({
-//     animation: horizontalScrollMotion,
-//     trigger: '.m3',
-//     start: '500 500',
-//     end: '+=2000',
-//     scrub: true,
-//     pin: true,
-// });
+// // gsap.to('#i1', { x: '-=10%' });
+// // gsap.to('#i2', { x: '-=500px' });
+// // gsap.to('#i3', { x: '-=200px' });
+
+// let vh100 = () => { return document.documentElement.clientHeight; };
+
+// function bmw() {
+//     ScrollTrigger.create({
+//         animation: horizontalScrollMotion,
+//         trigger: '.m3',
+//         // -=100vh даёт реальный top триггера,
+//         // т.к. при загрузке страницы(момент инициализации плагина) верхний слайд виден,
+//         // а в мэйне он скрыт и это компенсирует его скрытие
+//         // =====================================
+//         start: `top bottom`,
+//         end: `top top`,
+//         // start: `top-=${vh100()} center`,
+//         // end: `top-=${vh100()} top`,
+//         // =====================================
+//         // start: `top-=${vh100()} bottom-=300`,
+//         // end: `top-=${vh100()} bottom-=500`,
+//         // =====================================
+//         scrub: true,
+//         pin: '.m3 .main-section__left',
+//         markers: true,
+//     });
+// }
