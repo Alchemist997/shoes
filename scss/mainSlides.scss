@@ -38,7 +38,7 @@
 
   &__right {
     width: 50%;
-    // max-height: 100vh;
+    max-height: calc(100vh - 107px);
     display: flex;
     justify-content: stretch;
     align-items: stretch;
@@ -61,7 +61,6 @@
     }
 
     &-4 {
-      max-height: 100vh;
       grid-template-rows: 50% 14% 36%;
 
       .multi4-1 {
