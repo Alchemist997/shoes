@@ -18,6 +18,15 @@ const states = {
     aside: false,
 };
 
+window.addEventListener('load', () => {
+    let s2L = screen2.querySelector('.main-section__left');
+    let s2R = screen2.querySelector('.main-section__right');
+    console.log(s2L);
+    console.log(s2R);
+
+    s2R.style.maxHeight = `${s2L.offsetHeight}px`;
+});
+
 
 let mouseWheelBounce = gsap.timeline();
 mouseWheelBounce.to('.scroll-down__wheel', { top: '15px', duration: 0.5, ease: 'none' })
