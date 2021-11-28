@@ -22,7 +22,7 @@ const states = {
 };
 
 
-let mouseWheelBounce = gsap.timeline();
+const mouseWheelBounce = gsap.timeline();
 mouseWheelBounce.to('.scroll-down__wheel', { top: '15px', duration: 0.5, ease: 'none' })
     .to('.scroll-down__wheel', { top: '7px', duration: 0.6, ease: 'power2' });
 mouseWheelBounce.repeat(-1);
@@ -79,8 +79,8 @@ document.addEventListener('wheel', evt => {
     if (isScrollDown(evt) && states.screen1 && !states.intro && !states.main) {
         to2Slide();
 
-    } else if (isScrollUp(evt) && states.main & !states.screen1 && Y() < 5) {
-        if (mainTopCounter <= 4) {
+    } else if (isScrollUp(evt) && states.main & !states.screen1 && Y() < 80) {
+        if (mainTopCounter <= 1) {
             mainTopCounter++;
             return;
         }
@@ -98,20 +98,20 @@ document.addEventListener('wheel', evt => {
     if (isScrollDown(evt)) mainTopCounter = 0;
 }, { passive: false });
 
-let to1SlideGsap = gsap.timeline();
-to1SlideGsap.to('#s1BG1', { top: '100%', duration: 1 })
-    .to('#s1BG2', { bottom: '100%', duration: 1, delay: -1 })
-    .to('#s1BG3', { left: '100%', duration: 1, delay: -1 })
-    .to('#s1BG4', { bottom: '100%', duration: 1, delay: -1 })
-    .to('#s1BG5', { left: '100%', duration: 1, delay: -1 })
-    .to('#s1BG6', { top: '100%', duration: 1, delay: -1 })
+const to1SlideGsap = gsap.timeline();
+to1SlideGsap.to('#s1BG1', { top: '100%', duration: 1, ease: 'power2.out' })
+    .to('#s1BG2', { bottom: '100%', duration: 1, delay: -1, ease: 'power2.out' })
+    .to('#s1BG3', { left: '100%', duration: 1, delay: -1, ease: 'power2.out' })
+    .to('#s1BG4', { bottom: '100%', duration: 1, delay: -1, ease: 'power2.out' })
+    .to('#s1BG5', { left: '100%', duration: 1, delay: -1, ease: 'power2.out' })
+    .to('#s1BG6', { top: '100%', duration: 1, delay: -1, ease: 'power2.out' })
     .to('#s1BG7', {
-        left: '100%', duration: 1, delay: -1,
+        left: '100%', duration: 1, delay: -1, ease: 'power2.out',
         onComplete: () => { states.animIsActive = false; console.log('end1'); }
     });
 to1SlideGsap.pause();
 
-let to1Slide = () => {
+const to1Slide = () => {
     if (states.animIsActive)
         return;
 
@@ -125,16 +125,16 @@ let to1Slide = () => {
     }, 2100);
 };
 
-let to2SlideGsap = gsap.timeline();
+const to2SlideGsap = gsap.timeline();
 to2SlideGsap
     .fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, delay: 0.9, ease: 'power2.out' })
-    .to('#multi4Img1', { top: '100%', duration: 0.7, delay: -0.3 })
-    .to('#multi4Img2', { top: '100%', duration: 0.7, delay: -0.7 })
-    .to('#multi4Img3', { left: '100%', duration: 0.7, delay: -0.7 })
-    .to('#multi4Img4', { bottom: '100%', duration: 0.7, delay: -0.7 })
-    .fromTo('.s2 h1, .s2 h3', { opacity: 0 }, { opacity: 1, duration: 1 })
+    .to('#multi4Img1', { top: '100%', duration: 0.7, delay: -0.3, ease: 'power2.out' })
+    .to('#multi4Img2', { top: '100%', duration: 0.7, delay: -0.7, ease: 'power2.out' })
+    .to('#multi4Img3', { left: '100%', duration: 0.7, delay: -0.7, ease: 'power2.out' })
+    .to('#multi4Img4', { bottom: '100%', duration: 0.7, delay: -0.7, ease: 'power2.out' })
+    .fromTo('.s2 h1, .s2 h3', { opacity: 0 }, { opacity: 1, duration: 1, ease: 'power2.out' })
     .fromTo('.s2 .text', { opacity: 0 }, {
-        opacity: 1, duration: 0.7, delay: -0.6,
+        opacity: 1, duration: 0.7, delay: -0.6, ease: 'power2.out',
         onComplete: () => { states.animIsActive = false; xMoveInit(); console.log('end2'); }
     })
     .to('.scroll-down', {
@@ -146,7 +146,7 @@ to2SlideGsap
     });
 to2SlideGsap.pause();
 
-let to2Slide = () => {
+const to2Slide = () => {
     if (states.animIsActive)
         return;
 
@@ -163,11 +163,12 @@ let to2Slide = () => {
 
 btnToMain.addEventListener('click', () => to2Slide());
 
+// Подгон высоты картинок s2 под высоту текста s2
 window.addEventListener('load', () => {
     let s2L = screen2.querySelector('.main-section__left');
-    let s2H1 = s2L.querySelector('h1');
-    let s2H3 = s2L.querySelector('h3');
-    let s2Text = s2L.querySelector('.text');
+    const s2H1 = s2L.querySelector('h1');
+    const s2H3 = s2L.querySelector('h3');
+    const s2Text = s2L.querySelector('.text');
     let s2R = screen2.querySelector('.main-section__right');
 
     s2R.style.maxHeight = `${s2H1.offsetHeight + s2H3.offsetHeight + s2Text.offsetHeight +
@@ -177,10 +178,11 @@ window.addEventListener('load', () => {
 // Ровно до левого padding при 1440px:
 // vw100() - 160 - vw100() * 0.727 === vw100() * 0.273 - 160
 
+// Анимация горизонтального перемещения ms2
 const xMoveArea = vw100() * 0.273 - 160;
 const basexMoveValue = () => { return xMoveArea * 0.9; };
 
-let xMove = gsap.timeline();
+const xMove = gsap.timeline();
 xMove.to('.xMoveAnimFront', { x: `-=${basexMoveValue()}px`, duration: 1, ease: 'power2.in' })
     .to('.xMoveAnimBack', { x: `-=${basexMoveValue() - vh100() * 0.12}px`, duration: 1, delay: -1, ease: 'power2.in' });
 xMove.pause();
@@ -201,3 +203,50 @@ function xMoveInit() {
         markers: false,
     });
 }
+
+// Плавное появление в ms2
+const mS2Anim = gsap.timeline();
+mS2Anim
+    .fromTo('.ms--xMove .text', { opacity: 0 }, { opacity: 1, duration: 0.7, ease: 'power1.out', delay: 0.2 })
+    .fromTo('.xMoveAnimBack', { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power1.out', delay: -0.49 })
+    .fromTo('.xMoveAnimFront', { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power1.inOut', delay: -0.3 });
+
+ScrollTrigger.create({
+    animation: mS2Anim,
+    trigger: '.ms--xMove',
+    start: `top-=${vh100() * 0.62} bottom`,
+    toggleActions: 'play none none reverse',
+    markers: false,
+});
+
+// Плавное появление в ms3
+const mS3Anim = gsap.timeline();
+mS3Anim
+    .fromTo('.ms3 h3', { opacity: 0 }, { opacity: 1, duration: 0.8, ease: 'none', delay: 0 })
+    .fromTo('.ms3 .text', { opacity: 0 }, { opacity: 1, duration: 0.4, ease: 'power2.out', delay: -0.39 })
+    .fromTo('.ms3 .brand-img-wrap', { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power1.out', delay: -0.15 })
+    .to('.ms3 .multi-images__img-cap', { top: '100%', duration: 0.4, ease: 'power1.inOut', delay: -0.3 });
+
+ScrollTrigger.create({
+    animation: mS3Anim,
+    trigger: '.ms3',
+    start: `top+=${vh100() * 0.77} bottom`,
+    toggleActions: 'play none none none',
+    markers: false,
+});
+
+// Плавное появление в ms4
+const mS4Anim = gsap.timeline();
+mS4Anim
+    .to('#multi3Img1', { right: '100%', duration: 0.5, delay: 0, ease: 'power1.out' })
+    .to('#multi3Img3', { left: '100%', duration: 0.5, delay: -0.5, ease: 'power1.out' })
+    .to('#multi3Img2', { right: '100%', duration: 0.5, delay: -0.5, ease: 'power1.out' })
+    .fromTo('.ms4 .text', { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'power2.out', delay: 0 });
+
+ScrollTrigger.create({
+    animation: mS4Anim,
+    trigger: '.ms4',
+    start: `top+=${vh100() * 0.77} bottom`,
+    toggleActions: 'play none none none',
+    markers: false,
+});
