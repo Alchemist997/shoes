@@ -7,25 +7,19 @@ let screen2 = document.querySelector('.s2');
 
 let mainTopCounter = 0;
 const Y = () => { return window.scrollY; };
-const zMouse = index => { gsap.to('.scroll-down', { 'z-index': index }); };
+const vh100 = () => { return document.documentElement.clientHeight; };
+const vw100 = () => { return document.documentElement.clientWidth; };
 const isScrollDown = scroll => { return scroll.deltaY > 0; };
 const isScrollUp = scroll => { return scroll.deltaY < 0; };
+const zMouse = index => { gsap.to('.scroll-down', { 'z-index': index }); };
 const states = {
+    xMoveCreated: false,
     animIsActive: false,
     intro: true,
     screen1: false,
     main: false,
     aside: false,
 };
-
-window.addEventListener('load', () => {
-    let s2L = screen2.querySelector('.main-section__left');
-    let s2R = screen2.querySelector('.main-section__right');
-    console.log(s2L);
-    console.log(s2R);
-
-    s2R.style.maxHeight = `${s2L.offsetHeight}px`;
-});
 
 
 let mouseWheelBounce = gsap.timeline();
@@ -132,7 +126,8 @@ let to1Slide = () => {
 };
 
 let to2SlideGsap = gsap.timeline();
-to2SlideGsap.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, delay: 0.9, ease: 'power2.out' })
+to2SlideGsap
+    .fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, delay: 0.9, ease: 'power2.out' })
     .to('#multi4Img1', { top: '100%', duration: 0.7, delay: -0.3 })
     .to('#multi4Img2', { top: '100%', duration: 0.7, delay: -0.7 })
     .to('#multi4Img3', { left: '100%', duration: 0.7, delay: -0.7 })
@@ -140,14 +135,13 @@ to2SlideGsap.fromTo('.s1__slide-cover', { x: '100%' }, { x: 0, duration: 1, dela
     .fromTo('.s2 h1, .s2 h3', { opacity: 0 }, { opacity: 1, duration: 1 })
     .fromTo('.s2 .text', { opacity: 0 }, {
         opacity: 1, duration: 0.7, delay: -0.6,
-        onComplete: () => { states.animIsActive = false; console.log('end2'); }
+        onComplete: () => { states.animIsActive = false; xMoveInit(); console.log('end2'); }
     })
     .to('.scroll-down', {
         'z-index': -1, delay: -2.5,
         onComplete: () => {
             html.classList.remove('nonScrollable');
             screen1.classList.add('dNone');
-            // bmw()
         }
     });
 to2SlideGsap.pause();
@@ -169,35 +163,41 @@ let to2Slide = () => {
 
 btnToMain.addEventListener('click', () => to2Slide());
 
-// let horizontalScrollMotion = gsap.timeline();
-// horizontalScrollMotion.to('#i1', { x: '-=150%', ease: 'bounce.out', duration: 1 });
-// horizontalScrollMotion.to('#i2', { x: '-=180%', duration: 1, delay: -1 });
-// horizontalScrollMotion.to('#i3', { x: '-=180%', y: '-=50px', duration: 1, delay: -1 });
+window.addEventListener('load', () => {
+    let s2L = screen2.querySelector('.main-section__left');
+    let s2H1 = s2L.querySelector('h1');
+    let s2H3 = s2L.querySelector('h3');
+    let s2Text = s2L.querySelector('.text');
+    let s2R = screen2.querySelector('.main-section__right');
 
-// // gsap.to('#i1', { x: '-=10%' });
-// // gsap.to('#i2', { x: '-=500px' });
-// // gsap.to('#i3', { x: '-=200px' });
+    s2R.style.maxHeight = `${s2H1.offsetHeight + s2H3.offsetHeight + s2Text.offsetHeight +
+        vh100() * 0.033 + vw100() * 0.0555}px`;
+});
 
-// let vh100 = () => { return document.documentElement.clientHeight; };
+// Ровно до левого padding при 1440px:
+// vw100() - 160 - vw100() * 0.727 === vw100() * 0.273 - 160
 
-// function bmw() {
-//     ScrollTrigger.create({
-//         animation: horizontalScrollMotion,
-//         trigger: '.m3',
-//         // -=100vh даёт реальный top триггера,
-//         // т.к. при загрузке страницы(момент инициализации плагина) верхний слайд виден,
-//         // а в мэйне он скрыт и это компенсирует его скрытие
-//         // =====================================
-//         start: `top bottom`,
-//         end: `top top`,
-//         // start: `top-=${vh100()} center`,
-//         // end: `top-=${vh100()} top`,
-//         // =====================================
-//         // start: `top-=${vh100()} bottom-=300`,
-//         // end: `top-=${vh100()} bottom-=500`,
-//         // =====================================
-//         scrub: true,
-//         pin: '.m3 .main-section__left',
-//         markers: true,
-//     });
-// }
+const xMoveArea = vw100() * 0.273 - 160;
+const basexMoveValue = () => { return xMoveArea * 0.9; };
+
+let xMove = gsap.timeline();
+xMove.to('.xMoveAnimFront', { x: `-=${basexMoveValue()}px`, duration: 1, ease: 'power2.in' })
+    .to('.xMoveAnimBack', { x: `-=${basexMoveValue() - vh100() * 0.12}px`, duration: 1, delay: -1, ease: 'power2.in' });
+xMove.pause();
+
+function xMoveInit() {
+    if (states.xMoveCreated)
+        return;
+
+    states.xMoveCreated = true;
+
+    ScrollTrigger.create({
+        animation: xMove,
+        trigger: '.ms--xMove',
+        start: `bottom bottom`,
+        end: `bottom+=${vh100() * 0.5} top+=107`,
+        scrub: true,
+        pin: '.ms--xMove',
+        markers: true,
+    });
+}

@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let vacancyWrap = document.querySelector('.aside__vacancy');
     let vacancyCounter = document.querySelector('.vacancy-left-text span');
 
-    const vw100 = () => { return document.documentElement.clientWidth; };
-
     document.body.addEventListener('click', evt => {
         if (!evt.target.classList.contains('github'))
             evt.preventDefault();

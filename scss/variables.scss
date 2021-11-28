@@ -3,3 +3,9 @@ $white05: rgba(199, 204, 209, 0.5);
 $blackMain: #333;
 $blueMain: #196fc1;
 $blueDark: #005896;
+
+%imgCover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

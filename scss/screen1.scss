@@ -23,7 +23,6 @@
     right: 0;
     top: 0;
     bottom: 0;
-    // background: url('../img/kbg_dark.png') no-repeat center / cover;
     display: grid;
     justify-items: stretch;
     align-items: stretch;
@@ -41,16 +40,14 @@
     display: flex;
 
     img {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
+      @extend %imgCover
     }
   }
 
   &__img-cap {
     position: absolute;
     display: block;
-    background-color: rgb(20, 20, 20);
+    background-color: rgb(47, 47, 75);
     left: 0;
     right: 0;
     top: 0;
