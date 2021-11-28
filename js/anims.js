@@ -198,6 +198,6 @@ function xMoveInit() {
         end: `bottom+=${vh100() * 0.5} top+=107`,
         scrub: true,
         pin: '.ms--xMove',
-        markers: true,
+        markers: false,
     });
 }
