@@ -16,9 +16,26 @@
 }
 
 .main-section {
+  position: relative;
   display: flex;
   align-items: stretch;
   min-height: 100vh;
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    display: inline-block;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background-color: $white05;
+  }
+
+  &.none-after::after {
+    content: none;
+  }
 
   h3 {
     color: $blueMain;
@@ -29,7 +46,6 @@
     font-size: 1.25vw;
     font-weight: 300;
     line-height: 1.5;
-    // margin-bottom: 6.9vw;
   }
 
   &__left {
@@ -39,22 +55,6 @@
     padding-left: 160px;
     padding-top: 4.68vh;
     font-size: 1.25vw;
-
-    &::after {
-      content: '';
-      position: absolute;
-      z-index: -1;
-      display: inline-block;
-      top: 0;
-      bottom: -107px;
-      right: 0;
-      width: 1px;
-      background-color: $white05;
-    }
-
-    &.none-after::after {
-      content: none;
-    }
 
     &.ms_l--brand {
       li {
@@ -83,6 +83,14 @@
     img {
       @extend %imgCover;
     }
+  }
+
+  &.ms1 {
+    min-height: auto;
+  }
+
+  &.ms4 {
+    min-height: calc(100vh - 107px);
   }
 
   &.ms--xMove {
@@ -263,6 +271,93 @@
   }
 }
 
+.ms5 {
+  position: relative;
+
+  .main-section__left {
+    padding-top: calc(3.33vw * 1.5 + 1.66vw * 1.5 + 3.33vw + 4.68vh);
+    margin-bottom: 3.33vw;
+  }
+}
+
+.history__pinned {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+
+  &-left {
+    align-self: flex-start;
+    position: relative;
+    width: 50%;
+    padding-right: 6.7vw;
+    padding-left: 160px;
+    padding-top: 4.68vh;
+    background-color: $white;
+    border-bottom: 0 solid transparent;
+    transition: border-bottom 0.25s;
+
+    &.pinned {
+      border-bottom: 1px solid $white05;
+    }
+
+    h3 {
+      margin-bottom: 1.11vw;
+      position: relative;
+      height: 1.66vw;
+
+      span {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 160px;
+      width: 1px;
+      background-color: $white05;
+    }
+  }
+
+  &-right {
+    position: relative;
+    width: 50%;
+    height: calc(100vh - 107px);
+
+    img {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.5s ease-out;
+      @extend %imgCover;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+}
+
 .history-points {
   padding-left: 24px;
 }
@@ -287,7 +382,7 @@
     height: 13px;
   }
 
-  &:not(:last-child)::after {
+  &:not(.last-point)::after {
     width: 1px;
     left: -24px;
     bottom: -0.5em;

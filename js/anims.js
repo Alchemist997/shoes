@@ -13,6 +13,7 @@ const isScrollDown = scroll => { return scroll.deltaY > 0; };
 const isScrollUp = scroll => { return scroll.deltaY < 0; };
 const zMouse = index => { gsap.to('.scroll-down', { 'z-index': index }); };
 const states = {
+    historyPinCreated: false,
     xMoveCreated: false,
     animIsActive: false,
     intro: true,
@@ -135,7 +136,13 @@ to2SlideGsap
     .fromTo('.s2 h1, .s2 h3', { opacity: 0 }, { opacity: 1, duration: 1, ease: 'power2.out' })
     .fromTo('.s2 .text', { opacity: 0 }, {
         opacity: 1, duration: 0.7, delay: -0.6, ease: 'power2.out',
-        onComplete: () => { states.animIsActive = false; xMoveInit(); console.log('end2'); }
+        onComplete: () => {
+            states.animIsActive = false;
+            xMoveInit();
+            historyPin();
+            historyAnim();
+            console.log('end2');
+        }
     })
     .to('.scroll-down', {
         'z-index': -1, delay: -2.5,
@@ -200,7 +207,7 @@ function xMoveInit() {
         end: `bottom+=${vh100() * 0.5} top+=107`,
         scrub: true,
         pin: '.ms--xMove',
-        markers: false,
+        // markers: true,
     });
 }
 
@@ -216,7 +223,7 @@ ScrollTrigger.create({
     trigger: '.ms--xMove',
     start: `top-=${vh100() * 0.62} bottom`,
     toggleActions: 'play none none reverse',
-    markers: false,
+    // markers: true,
 });
 
 // Плавное появление в ms3
@@ -232,7 +239,7 @@ ScrollTrigger.create({
     trigger: '.ms3',
     start: `top+=${vh100() * 0.77} bottom`,
     toggleActions: 'play none none none',
-    markers: false,
+    // markers: true,
 });
 
 // Плавное появление в ms4
@@ -248,5 +255,46 @@ ScrollTrigger.create({
     trigger: '.ms4',
     start: `top+=${vh100() * 0.77} bottom`,
     toggleActions: 'play none none none',
-    markers: false,
+    // markers: true,
 });
+
+// Закреп элементов в блоке истории
+let historyPinnedHead = document.querySelector('.history__pinned-left');
+function historyPin() {
+    if (states.historyPinCreated)
+        return;
+
+    states.historyPinCreated = true;
+
+    ScrollTrigger.create({
+        trigger: '.ms5',
+        start: `top top+=107`,
+        end: `bottom bottom`,
+        scrub: true,
+        pin: '.history__pinned',
+        pinSpacer: '.ms5',
+        pinSpacing: false,
+        // markers: true,
+        onEnter: () => { historyPinnedHead.classList.add('pinned'); },
+        onLeaveBack: () => { historyPinnedHead.classList.remove('pinned'); }
+    });
+};
+
+// Смена видимости в блоке истории
+const historyTriggerPosition = vw100() * 0.033 + vw100() * 0.0499 * 1.5 + vh100() * 0.0468;
+function historyAnim() {
+    const historySegments = document.querySelectorAll('.historySegment');
+    const historyImages = document.querySelectorAll('.history__pinned-right img');
+    const historyH3s = document.querySelectorAll('.history__pinned-left h3 span');
+    historySegments.forEach((segment, i) => {
+        ScrollTrigger.create({
+            trigger: segment,
+            start: `top-=${vh100() * 0.2} top+=${historyTriggerPosition + 107}`,
+            end: `bottom-=${vh100() * 0.2} top+=${historyTriggerPosition + 107}`,
+            // toggleActions: `play reverse none ${i > 0 ? 'reverse' : 'none'}`,
+            toggleClass: { targets: [historyImages[i], historyH3s[i]], className: 'active' },
+            id: i + 1,
+            // markers: true
+        });
+    });
+}
