@@ -28,10 +28,10 @@ mouseWheelBounce.to('.scroll-down__wheel', { top: '15px', duration: 0.5, ease: '
     .to('.scroll-down__wheel', { top: '7px', duration: 0.6, ease: 'power2' });
 mouseWheelBounce.repeat(-1);
 
-watchVideo.onclick = () => {
-    videoBG.play();
-    mouseWheelBounce.pause();
-};
+// watchVideo.onclick = () => {
+//     videoBG.play();
+//     mouseWheelBounce.pause();
+// };
 
 let i = 0;
 
@@ -58,8 +58,9 @@ document.addEventListener('wheel', evt => {
                     el.classList.add('dNone');
                 }
             });
-            videoBG.load();
-            mouseWheelBounce.play();
+            // videoBG.load();
+            videoBG.pause();
+            // mouseWheelBounce.play();
             zMouse(1);
             states.intro = false;
         }, 1000);
@@ -72,6 +73,7 @@ document.addEventListener('wheel', evt => {
         setTimeout(() => {
             states.screen1 = false;
             introBlocks.forEach(el => el.classList.add('introState'));
+            videoBG.play();
         }, 1000);
     }
 

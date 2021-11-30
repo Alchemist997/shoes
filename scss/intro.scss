@@ -10,6 +10,7 @@
   transition: opacity 1s;
   opacity: 0;
   text-transform: uppercase;
+  background-color: rgba(#000, 0.55);
 
   &.introState {
     opacity: 1;
@@ -39,7 +40,7 @@
     }
 
     video {
-      @extend %imgCover
+      @extend %imgCover;
     }
   }
 
