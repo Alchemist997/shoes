@@ -261,6 +261,22 @@ ScrollTrigger.create({
     // markers: true,
 });
 
+// Плавное появление в ms5
+const mS5Anim = gsap.timeline();
+mS5Anim
+    .fromTo('.ms5 h1', { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out', delay: 0 })
+    .fromTo('.ms5 h3', { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out', delay: -0.3 })
+    .fromTo('.ms5 .main-section__left', { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'power2.out', delay: -0.3 })
+    .to('.ms5 .multi-images__img-cap', { left: '100%', duration: 0.5, delay: -0.3, ease: 'power1.out' });
+
+ScrollTrigger.create({
+    animation: mS5Anim,
+    trigger: '.ms5',
+    start: `top+=${vh100() * 0.77} bottom`,
+    toggleActions: 'play none none reset',
+    // markers: true,
+});
+
 // Закреп элементов в блоке истории
 let historyPinnedHead = document.querySelector('.history__pinned-left');
 function historyPin() {
