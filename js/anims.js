@@ -13,6 +13,7 @@ const isScrollDown = scroll => { return scroll.deltaY > 0; };
 const isScrollUp = scroll => { return scroll.deltaY < 0; };
 const zMouse = index => { gsap.to('.scroll-down', { 'z-index': index }); };
 const states = {
+    historyAnimCreated: false,
     historyPinCreated: false,
     xMoveCreated: false,
     animIsActive: false,
@@ -285,16 +286,39 @@ function historyPin() {
 // Смена видимости в блоке истории
 const historyTriggerPosition = vw100() * 0.033 + vw100() * 0.0499 * 1.5 + vh100() * 0.0468;
 function historyAnim() {
+    if (states.historyAnimCreated)
+        return;
+
+    states.historyAnimCreated = true;
+
     const historySegments = document.querySelectorAll('.historySegment');
     const historyImages = document.querySelectorAll('.history__pinned-right img');
     const historyH3s = document.querySelectorAll('.history__pinned-left h3 span');
+
     historySegments.forEach((segment, i) => {
         ScrollTrigger.create({
             trigger: segment,
             start: `top-=${vh100() * 0.2} top+=${historyTriggerPosition + 107}`,
             end: `bottom-=${vh100() * 0.2} top+=${historyTriggerPosition + 107}`,
-            // toggleActions: `play reverse none ${i > 0 ? 'reverse' : 'none'}`,
-            toggleClass: { targets: [historyImages[i], historyH3s[i]], className: 'active' },
+            toggleClass: {
+                targets: [
+                    // У футера меняется класс, но это ни на что не влияет.
+                    // Сделал так чтобы gsap не получал null
+                    i > 0 ? historyImages[i] : '.main-footer',
+                    i > 0 ? historyH3s[i] : '.main-footer',
+                ],
+                className: 'active'
+            },
+            onEnterBack: () => {
+                if (i > 0) return;
+                historyImages[0].classList.add('active');
+                historyH3s[0].classList.add('active');
+            },
+            onLeave: () => {
+                if (i > 0) return;
+                historyImages[0].classList.remove('active');
+                historyH3s[0].classList.remove('active');
+            },
             id: i + 1,
             // markers: true
         });
