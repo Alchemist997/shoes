@@ -273,7 +273,7 @@ ScrollTrigger.create({
     animation: mS5Anim,
     trigger: '.ms5',
     start: `top+=${vh100() * 0.77} bottom`,
-    toggleActions: 'play none none reset',
+    toggleActions: 'play none none none',
     // markers: true,
 });
 
