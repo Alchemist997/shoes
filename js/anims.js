@@ -176,13 +176,13 @@ btnToMain.addEventListener('click', () => to2Slide());
 // Подгон высоты картинок s2 под высоту текста s2
 window.addEventListener('load', () => {
     let s2L = screen2.querySelector('.main-section__left');
-    const s2H1 = s2L.querySelector('h1');
-    const s2H3 = s2L.querySelector('h3');
-    const s2Text = s2L.querySelector('.text');
+    const s2H1h = s2L.querySelector('h1').offsetHeight;
+    const s2H3h = s2L.querySelector('h3').offsetHeight;
+    const s2Texth = s2L.querySelector('.text').offsetHeight;
     let s2R = screen2.querySelector('.main-section__right');
 
-    s2R.style.maxHeight = `${s2H1.offsetHeight + s2H3.offsetHeight + s2Text.offsetHeight +
-        vh100() * 0.033 + vw100() * 0.0555}px`;
+    s2R.style.maxHeight = `${s2H1h + s2H3h + s2Texth * 1.05 +
+        vw100() * 0.0333 + vh100() * 0.0468}px`;
 });
 
 // Ровно до левого padding при 1440px:
@@ -194,7 +194,7 @@ const basexMoveValue = () => { return xMoveArea * 0.9; };
 
 const xMove = gsap.timeline();
 xMove.to('.xMoveAnimFront', { x: `-=${basexMoveValue()}px`, duration: 1, ease: 'power2.in' })
-    .to('.xMoveAnimBack', { x: `-=${basexMoveValue() - vh100() * 0.12}px`, duration: 1, delay: -1, ease: 'power2.in' });
+    .to('.xMoveAnimBack', { x: `-=${basexMoveValue() - vh100() * 0.07}px`, duration: 1, delay: -1, ease: 'power2.in' });
 xMove.pause();
 
 function xMoveInit() {

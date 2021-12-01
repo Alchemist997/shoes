@@ -96,7 +96,7 @@
   &.ms--xMove {
     position: relative;
     min-height: calc(100vh - 107px);
-    margin-top: 53px;
+    margin-top: 6vh;
     padding-top: 0;
 
     .text {
@@ -117,7 +117,8 @@
     .back-img2 {
       bottom: 2.832vh;
       right: 74.60938vh;
-      width: 27.63672vh;
+      // width: 27.63672vh;
+      left: 50%;
       height: 35.54688vh;
     }
 
@@ -150,15 +151,19 @@
     }
 
     .xMove-stripe1 {
-      right: 102.2461vh;
+      // right: 102.2461vh;
+      left: 50%;
+      bottom: 38.37888vh;
     }
 
     .xMove-stripe2 {
       right: 50vh;
+      bottom: 6.9336vh;
     }
 
     .xMove-stripe3 {
       right: 25vh;
+      bottom: 9.4726vh;
     }
   }
 
@@ -170,8 +175,7 @@
 
     &__stripe {
       position: absolute;
-      top: 0;
-      bottom: 0;
+      top: -6vh;
       display: inline-block;
       width: 1px;
       background-color: $white05;
@@ -218,12 +222,14 @@
 
     &__brand-block {
       display: grid;
-      grid-template-rows: auto;
+      grid-template-rows: 100%;
       grid-template-columns: 27% 36.5% 36.5%;
 
       .brand-img-wrap {
         position: relative;
-        grid-column: 2/3;
+        grid-column: 1/3;
+        padding-top: 15px;
+        padding-bottom: 15px;
 
         img {
           object-fit: contain;
@@ -241,6 +247,7 @@
         }
 
         &::before {
+          content: none;
           left: -1px;
         }
 
@@ -269,6 +276,10 @@
       bottom: 0;
     }
   }
+}
+
+.ms3::after {
+  top: -2.9vh;
 }
 
 .ms5 {
