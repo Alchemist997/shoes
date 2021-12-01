@@ -367,6 +367,17 @@
       }
     }
   }
+
+  &-bottom {
+    position: absolute;
+    display: block;
+    height: 3.7%;
+    bottom: 0;
+    left: -50vw;
+    right: 100%;
+    background-color: $white;
+    border-top: 1px solid $white05;
+  }
 }
 
 .history-points {
