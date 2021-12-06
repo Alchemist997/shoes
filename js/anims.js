@@ -34,23 +34,24 @@ mouseWheelBounce.repeat(-1);
 //     mouseWheelBounce.pause();
 // };
 
-let i = 0;
-
-let t1;
-let t2;
-
 document.addEventListener('wheel', evt => {
-    console.log(t1 - performance.now() + ' mssssssssssss');
     if (states.animIsActive)
         return evt.preventDefault();
 
     if (states.aside)
         return;
-    i++;
-    // console.log(i);
 
     // Переключение intro/screen1
     if (isScrollDown(evt) && states.intro && !states.screen1 && !states.main) {
+        window.scrollTo({ top: 0 });
+        mS2Anim.restart();
+        mS2Anim.pause();
+        mS3Anim.restart();
+        mS3Anim.pause();
+        mS4Anim.restart();
+        mS4Anim.pause();
+        mS5Anim.restart();
+        mS5Anim.pause();
         introBlocks.forEach(el => el.classList.remove('introState'));
         states.screen1 = true;
         setTimeout(() => {
@@ -117,7 +118,7 @@ to1SlideGsap.to('#s1BG1', { top: '100%', duration: 1, ease: 'power2.out' })
     .to('#s1BG6', { top: '100%', duration: 1, delay: -1, ease: 'power2.out' })
     .to('#s1BG7', {
         left: '100%', duration: 1, delay: -1, ease: 'power2.out',
-        onComplete: () => { states.animIsActive = false; console.log('end1'); console.log(t1 - performance.now() + ' ms');}
+        onComplete: () => { states.animIsActive = false; console.log('end1'); }
     });
 to1SlideGsap.pause();
 
@@ -125,7 +126,6 @@ const to1Slide = () => {
     if (states.animIsActive)
         return;
 
-    t1 = performance.now();
     states.animIsActive = true;
     console.log('start1');
     mainTopCounter = 0;
@@ -159,7 +159,6 @@ to2SlideGsap
         onComplete: () => {
             html.classList.remove('nonScrollable');
             screen1.classList.add('dNone');
-            console.log(t2 - performance.now() + ' ms');
         }
     });
 to2SlideGsap.pause();
@@ -168,7 +167,6 @@ const to2Slide = () => {
     if (states.animIsActive)
         return;
 
-    t2 = performance.now();
     states.animIsActive = true;
     console.log('start2');
     states.main = true;
