@@ -67,8 +67,10 @@ document.addEventListener('wheel', evt => {
             videoBG.pause();
             // mouseWheelBounce.play();
             zMouse(1);
-            states.intro = false;
         }, 1000);
+        setTimeout(() => {
+            states.intro = false;
+        }, 2000);
 
     } else if (isScrollUp(evt) && !states.intro && states.screen1 && !states.main) {
         zMouse(7777);
