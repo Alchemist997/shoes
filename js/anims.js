@@ -36,14 +36,18 @@ mouseWheelBounce.repeat(-1);
 
 let i = 0;
 
+let t1;
+let t2;
+
 document.addEventListener('wheel', evt => {
+    console.log(t1 - performance.now() + ' mssssssssssss');
     if (states.animIsActive)
         return evt.preventDefault();
 
     if (states.aside)
         return;
     i++;
-    console.log(i);
+    // console.log(i);
 
     // Переключение intro/screen1
     if (isScrollDown(evt) && states.intro && !states.screen1 && !states.main) {
@@ -111,7 +115,7 @@ to1SlideGsap.to('#s1BG1', { top: '100%', duration: 1, ease: 'power2.out' })
     .to('#s1BG6', { top: '100%', duration: 1, delay: -1, ease: 'power2.out' })
     .to('#s1BG7', {
         left: '100%', duration: 1, delay: -1, ease: 'power2.out',
-        onComplete: () => { states.animIsActive = false; console.log('end1'); }
+        onComplete: () => { states.animIsActive = false; console.log('end1'); console.log(t1 - performance.now() + ' ms');}
     });
 to1SlideGsap.pause();
 
@@ -119,6 +123,7 @@ const to1Slide = () => {
     if (states.animIsActive)
         return;
 
+    t1 = performance.now();
     states.animIsActive = true;
     console.log('start1');
     mainTopCounter = 0;
@@ -152,6 +157,7 @@ to2SlideGsap
         onComplete: () => {
             html.classList.remove('nonScrollable');
             screen1.classList.add('dNone');
+            console.log(t2 - performance.now() + ' ms');
         }
     });
 to2SlideGsap.pause();
@@ -160,6 +166,7 @@ const to2Slide = () => {
     if (states.animIsActive)
         return;
 
+    t2 = performance.now();
     states.animIsActive = true;
     console.log('start2');
     states.main = true;
