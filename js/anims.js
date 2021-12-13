@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let vacancyCounter = document.querySelector('.vacancy-left-text span');
 
     document.body.addEventListener('click', evt => {
-        if (!evt.target.classList.contains('github'))
+        if (!evt.target.closest('.isLink'))
             evt.preventDefault();
 
         if (!evt.target.closest('.vacancyToggleBtn'))
